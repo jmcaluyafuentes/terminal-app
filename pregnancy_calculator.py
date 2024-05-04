@@ -1,19 +1,19 @@
 """ 
 This module contains the calculations on the information about pregnancy such as
-    gestational age in weeks, trimester, estimated due date (EDD) and countdown until EDD.
+gestational age in weeks, trimester, estimated due date (EDD) and countdown until EDD.
 """
 
 from datetime import date, timedelta
 
 def calculate_gestational_age(last_period_date):
 
-    """
-    Calculate gestational age in weeks by subtracting current date and last menstrual date
+    """Calculate gestational age in weeks by subtracting current date and last menstrual period date.
 
-    Parameters
-    ----------
-    last_period_date: class datetime.date
-        The date of last menstrual period
+    Args:
+        last_period_date (datetime.date): The date of last menstrual period.
+
+    Returns:
+        int: The gestational age in weeks.
     """
 
     # Get the current date
@@ -28,15 +28,14 @@ def calculate_gestational_age(last_period_date):
     return gestational_age_in_weeks
 
 def calculate_trimester(gestational_age):
-    """
-    Determine the trimester based on the gestational age.
+    """Determine the trimester based on the gestational age.
 
-    Parameters
-    ----------
-    gestational_age: 
-        The gestational age in weeks
+    Args:
+        gestational_age (int): The gestational age in weeks.
+
+    Returns:
+        str: The first, second or third trimester.
     """
-    print(type(gestational_age))
 
     if gestational_age <= 12:
         return 'First trimester'
@@ -46,10 +45,26 @@ def calculate_trimester(gestational_age):
         return 'Third trimester'
 
 def calculate_due_date(last_period_date):
+    """Calculate the due date by adding 40 weeks to the date of last menstrual period.
+
+    Args:
+        last_period_date (class datetime.date): The date of last menstrual period.
+
+    Returns:
+        datetime.date: The due date.
+    """
     estimated_due_date = last_period_date + timedelta(weeks=40)
     return estimated_due_date
 
 def calculate_countdown(due_date):
+    """Calculate the countdown from current date until the due date.
+
+    Args:
+        due_date (datetime.date): The due date.
+
+    Returns:
+        tuple: Remaining numbers of weeks and days until due date
+    """
     # Get the current date
     current_date = date.today()
 
