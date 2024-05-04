@@ -1,51 +1,23 @@
-from datetime import datetime, timedelta
-
-def calculate_gestational_age(last_period_date):
-
-    # Get the current date
-    current_date = datetime.now()
-
-    # Calculate elapsed time from last period to current date in days
-    elapsed_time = (current_date - last_period_date).days
-
-    # Calculate gestational age in weeks and round down the result
-    gestational_age_in_weeks = elapsed_time // 7
-
-    return gestational_age_in_weeks
-
-def calculate_trimester(gestational_age):
-    if gestational_age <= 12:
-        return 'First trimester'
-    elif 13 <= gestational_age <= 26:
-        return 'Second trimester'
-    else:
-        return 'Third trimester'
-
-def calculate_due_date(last_period_date):
-    estimated_due_date = last_period_date + timedelta(weeks=40)
-    return estimated_due_date
-
-def calculate_countdown(due_date):
-    # Get the current date
-    current_date = datetime.now()
-
-    # Calculate the difference in days between due date and current date
-    days_to_due_date = (due_date - current_date).days
-
-    # Calculate weeks and days remaining
-    weeks_remaining = days_to_due_date // 7
-    days_remaining = days_to_due_date % 7
-
-    return weeks_remaining, days_remaining
+from datetime import datetime
+from pregnancy_calculator import (
+    calculate_gestational_age,
+    calculate_trimester,
+    calculate_due_date,
+    calculate_countdown
+)
 
 # Main function
 def main():
+    """
+    Main function to get user input, calculate and display the information about pregnancy such as
+    gestational age in weeks, trimester, estimated due date (EDD) and countdown until EDD.
+    """
 
-    # Prompt the use to enter the month, day and year of her last period
+    # Prompt the user to enter the month, day and year of her last menstrual period
     last_period_month = int(input('Enter the month of last period: '))
     last_period_day = int(input('Enter the day of last period: '))
     last_period_year = int(input('Enter the year of last period: '))
-    last_period_date = datetime(last_period_year, last_period_month, last_period_day)
+    last_period_date = datetime(last_period_year, last_period_month, last_period_day).date()
 
     # Calculate gestational age in weeks
     gestational_age = calculate_gestational_age(last_period_date)
@@ -56,10 +28,10 @@ def main():
     # Calculate estimated due date
     due_date = calculate_due_date(last_period_date)
 
-    # Calculate countdown from current date until due date
+    # Calculate the countdown from current date until due date
     weeks_remaining, days_remaining = calculate_countdown(due_date)
 
-    # Display the output
+    # Display relevant information about the pregnancy
     print(f'You are {gestational_age} weeks pregnant.')
     print(f'Trimester: {trimester}')
     print(f"Estimated Due Date: {due_date.strftime('%d/%m/%Y')}")
