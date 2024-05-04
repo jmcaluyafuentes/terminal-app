@@ -7,7 +7,8 @@ from datetime import date, timedelta
 
 def calculate_gestational_age(last_period_date):
 
-    """Calculate gestational age in weeks by subtracting current date and last menstrual period date.
+    """
+    Calculate gestational age in weeks by subtracting current date and last menstrual period.
 
     Args:
         last_period_date (datetime.date): The date of last menstrual period.
@@ -28,7 +29,8 @@ def calculate_gestational_age(last_period_date):
     return gestational_age_in_weeks
 
 def calculate_trimester(gestational_age):
-    """Determine the trimester based on the gestational age.
+    """
+    Determine the trimester based on the gestational age.
 
     Args:
         gestational_age (int): The gestational age in weeks.
@@ -45,10 +47,11 @@ def calculate_trimester(gestational_age):
         return 'Third trimester'
 
 def calculate_due_date(last_period_date):
-    """Calculate the due date by adding 40 weeks to the date of last menstrual period.
+    """
+    Calculate the due date by adding 40 weeks to the date of last menstrual period.
 
     Args:
-        last_period_date (class datetime.date): The date of last menstrual period.
+        last_period_date (datetime.date): The date of last menstrual period.
 
     Returns:
         datetime.date: The due date.
@@ -57,7 +60,8 @@ def calculate_due_date(last_period_date):
     return estimated_due_date
 
 def calculate_countdown(due_date):
-    """Calculate the countdown from current date until the due date.
+    """
+    Calculate the countdown from current date until the due date.
 
     Args:
         due_date (datetime.date): The due date.
