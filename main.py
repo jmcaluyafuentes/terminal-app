@@ -25,6 +25,19 @@ def calculate_due_date(last_period_date):
     estimated_due_date = last_period_date + timedelta(weeks=40)
     return estimated_due_date
 
+def calculate_countdown(due_date):
+    # Get the current date
+    current_date = datetime.now()
+
+    # Calculate the difference in days between due date and current date
+    days_to_due_date = (due_date - current_date).days
+
+    # Calculate weeks and days remaining
+    weeks_remaining = days_to_due_date // 7
+    days_remaining = days_to_due_date % 7
+
+    return weeks_remaining, days_remaining
+
 # Main function
 def main():
 
@@ -43,10 +56,14 @@ def main():
     # Calculate estimated due date
     due_date = calculate_due_date(last_period_date)
 
+    # Calculate countdown from current date until due date
+    weeks_remaining, days_remaining = calculate_countdown(due_date)
+
     # Display the output
     print(f'You are {gestational_age} weeks pregnant.')
     print(f'Trimester: {trimester}')
     print(f"Estimated Due Date: {due_date.strftime('%d/%m/%Y')}")
+    print(f'You are {weeks_remaining} week(s) and {days_remaining} day(s) until due date.')
 
 if __name__ == "__main__":
     main()
