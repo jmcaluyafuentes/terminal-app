@@ -45,7 +45,9 @@ https://github.com/jmcaluyafuentes/terminal-app-T1A3
 
 ### 1. Pregnancy Information
 
-### 2. Precautions
+### 2. Safety Information
+
+Changed the title from "Precautions" (based from the development plan) to "Safety Information" as latter is more appropriate for this context.
 
 ### 3. Note-taking
 

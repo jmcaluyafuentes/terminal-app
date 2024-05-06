@@ -16,6 +16,8 @@ from pregnancy_calculator import (
     calculate_countdown
 )
 from food_safety import check_food_safety
+from travel_safety import check_travel_safety
+from activities_safety import check_activities_safety
 
 def pregnancy_information():
     """
@@ -77,13 +79,30 @@ def get_last_period_date():
             print_separator_line()
             print('Error: You entered an invalid format. Please enter the date in DD/MM/YYYY.')
 
-def precautions():
-    select_precaution = input('Enter 1 to select Food Safety')
+def safety_info():
+    """
+    Prompt user to select from the three topics related to safety in pregnancy.
+    """
 
-    if select_precaution == '1':
-        food = input('Enter food.')
-        safety_info = check_food_safety(food)
-        print(f'{food}: {safety_info}')
+    while True:
+
+        print('Select a topic:')
+        print('1. Food Safety')
+        print('2. Travel Safety')
+        print('3. Activities Safety')
+
+        choice = input('Enter your choice (1, 2 or 3): ')
+
+        if choice == '1':
+            food = input('Enter a food item: ').lower()
+            food_safety_info = check_food_safety(food)
+            print(f'{food.capitalize()}: {food_safety_info}')
+        elif choice == '2':
+            check_travel_safety()
+        elif choice == '3':
+            check_activities_safety()
+        else:
+            print('Error: Invalid choice. Please enter 1 for Food Safety, 2 for Travel Safety or 3 for Activities Safety')
 
 def note_taking():
     pass
@@ -110,7 +129,7 @@ def main():
     while main_menu:
         print('Select from the following list.')
         print('1. Pregnancy Information')
-        print('2. Precautions')
+        print('2. Safety Information')
         print('3. Take Down Notes')
 
         choice = input('Enter your choice (1, 2 or 3): ')
@@ -119,7 +138,7 @@ def main():
         if choice == '1':
             pregnancy_information()
         elif choice == '2':
-            precautions()
+            safety_info()
         elif choice == '3':
             note_taking()
         else:

@@ -15,10 +15,12 @@ def check_food_safety(food):
         str: The safety information of a certain food.
     """
 
-    with open('food_safety_list.csv') as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            if row['Food'].lower() == food.lower():
-                return row['Safety Info']
+    while True:
 
-    return 'Safety information is not available for this food.'
+        with open('food_safety_list.csv') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                if row['Food'].lower() == food.lower():
+                    return row['Safety Info']
+
+        return 'Safety information is not available for this food.'
