@@ -21,25 +21,42 @@ def pregnancy_information():
     Calculate and display the information about pregnancy such as gestational age 
     in weeks, trimester, estimated due date (EDD) and countdown until EDD.
     """
-    last_period_date = get_last_period_date()
+    while True:
 
-    # Calculate gestational age in weeks
-    gestational_age = calculate_gestational_age(last_period_date)
+        last_period_date = get_last_period_date()
 
-    # Calculate trimester based on gestational age
-    trimester = calculate_trimester(gestational_age)
+        # Calculate gestational age in weeks
+        gestational_age = calculate_gestational_age(last_period_date)
 
-    # Calculate estimated due date
-    due_date = calculate_due_date(last_period_date)
+        # Calculate trimester based on gestational age
+        trimester = calculate_trimester(gestational_age)
 
-    # Calculate the countdown from current date until due date
-    weeks_remaining, days_remaining = calculate_countdown(due_date)
+        # Calculate estimated due date
+        due_date = calculate_due_date(last_period_date)
 
-    # Display relevant information about the pregnancy
-    print(f'\nYou are {gestational_age} weeks pregnant.')
-    print(f'Trimester: {trimester}')
-    print(f"Estimated Due Date: {due_date.strftime('%d/%m/%Y')}")
-    print(f'Due Date: {weeks_remaining} week(s) and {days_remaining} day(s)')
+        # Calculate the countdown from current date until due date
+        weeks_remaining, days_remaining = calculate_countdown(due_date)
+
+        # Display relevant information about the pregnancy
+        print(f'\nYou are {gestational_age} weeks pregnant.')
+        print(f'Trimester: {trimester}')
+        print(f"Estimated Due Date: {due_date.strftime('%d/%m/%Y')}")
+        print(f'Due Date: {weeks_remaining} week(s) and {days_remaining} day(s)')
+
+        print_separator_line
+
+        while True:
+            next_choice = input('What would you like to do next?\n'
+                                '1. Continue\n'
+                                '2. Return to main menu\n'
+                                'Enter your choice (1 or 2): ')
+
+            if next_choice == '1':
+                break
+            elif next_choice == '2':
+                return
+            else:
+                print('Invalid choice. Please enter 1 or 2.\n')
 
 def get_last_period_date():
     """
@@ -56,6 +73,7 @@ def get_last_period_date():
             last_period_date = datetime.strptime(user_input_date, '%d/%m/%Y').date()
             return last_period_date
         except ValueError:
+            print_separator_line
             print('Error: You entered an invalid format. Please enter the date in DD/MM/YYYY.')
 
 def precautions():
@@ -77,23 +95,43 @@ def main():
     """
     Main function that allows the user to select from the features of pregnancy tracker app.
     """
+
     print('\nWelcome to Pregnancy Tracker App!\n')
-    print('What would you like to know? Select from the following list.')
-    print('1. Pregnancy Information')
-    print('2. Precautions')
-    print('3. Take Down Notes')
-    choice = input('Enter your choice (1, 2 or 3): ')
+    print('What would you like to know? ')
 
-    print_separator_line()
+    main_menu = True
 
-    if choice == '1':
-        pregnancy_information()
-    elif choice == '2':
-        precautions()
-    elif choice == '3':
-        note_taking()
-    else:
-        print('Invalid choice.')
+    while main_menu:
+        print('Select from the following list.')
+        print('1. Pregnancy Information')
+        print('2. Precautions')
+        print('3. Take Down Notes')
+
+        choice = input('Enter your choice (1, 2 or 3): ')
+        print_separator_line()
+
+        if choice == '1':
+            pregnancy_information()
+        elif choice == '2':
+            precautions()
+        elif choice == '3':
+            note_taking()
+        else:
+            print('Invalid choice. Please enter 1, 2 or 3.\n')
+
+        while True:
+            next_choice = input('What would you like to do next?\n'
+                                '1. Return to the main menu?\n'
+                                '2. Exit the app\n'
+                                'Enter your choice (1 or 2): ')
+
+            if next_choice == '1':
+                break
+            elif next_choice == '2':
+                main_menu = False
+                break
+            else:
+                print('Invalid choice. Please enter 1 or 2.\n')
 
 if __name__ == "__main__":
     main()
