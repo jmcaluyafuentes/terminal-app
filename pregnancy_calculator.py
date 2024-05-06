@@ -16,7 +16,6 @@ def calculate_gestational_age(last_period_date):
     Returns:
         int: The gestational age in weeks.
     """
-
     # Get the current date
     current_date = date.today()
 
@@ -38,7 +37,6 @@ def calculate_trimester(gestational_age):
     Returns:
         str: The first, second or third trimester.
     """
-
     if gestational_age <= 12:
         return 'First trimester'
     elif 13 <= gestational_age <= 26:
