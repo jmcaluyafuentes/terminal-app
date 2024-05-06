@@ -41,7 +41,7 @@ def pregnancy_information():
         weeks_remaining, days_remaining = calculate_countdown(due_date)
 
         # Display relevant information about the pregnancy
-        print(f'\nYou are {gestational_age} weeks pregnant.')
+        print(f'\nYou are {gestational_age} weeks pregnant.\n')
         print(f'Trimester: {trimester}')
         print(f"Estimated Due Date: {due_date.strftime('%d/%m/%Y')}")
         print(f'Due Date: {weeks_remaining} week(s) and {days_remaining} day(s)')
@@ -49,15 +49,20 @@ def pregnancy_information():
         print_separator_line()
 
         while True:
-            next_choice = input('What would you like to do next?\n'
+            next_choice = input('What would you like to do next?\n\n'
                                 '1. Continue\n'
                                 '2. Return to main menu\n'
-                                'Enter your choice (1 or 2): ')
+                                '3. Exit the app\n'
+                                'Enter your choice (1, 2 or 3): ')
+            
+            print_separator_line()
 
             if next_choice == '1':
                 break
             elif next_choice == '2':
                 return
+            elif next_choice == '3':
+                return False
             else:
                 print('Invalid choice. Please enter 1 or 2.\n')
 
@@ -70,7 +75,7 @@ def get_last_period_date():
 
     """
     while True:
-        user_input_date = input('Enter the date of your last menstrual period (DD/MM/YYYY): ')
+        user_input_date = input('\nEnter the date of your last menstrual period (DD/MM/YYYY): ')
 
         try:
             last_period_date = datetime.strptime(user_input_date, '%d/%m/%Y').date()
@@ -86,23 +91,26 @@ def safety_info():
 
     while True:
 
-        print('Select a topic:')
+        print('Select a topic:\n')
         print('1. Food Safety')
         print('2. Travel Safety')
-        print('3. Activities Safety')
+        print('3. Activities Safety\n')
 
         choice = input('Enter your choice (1, 2 or 3): ')
+
+        print_separator_line()
 
         if choice == '1':
             food = input('Enter a food item: ').lower()
             food_safety_info = check_food_safety(food)
-            print(f'{food.capitalize()}: {food_safety_info}')
+            print(f'\n{food.capitalize()}: {food_safety_info}')
+            print_separator_line()
         elif choice == '2':
             check_travel_safety()
         elif choice == '3':
             check_activities_safety()
         else:
-            print('Error: Invalid choice. Please enter 1 for Food Safety, 2 for Travel Safety or 3 for Activities Safety')
+            print('Error: Invalid choice. Please enter 1 for Food Safety, 2 for Travel Safety or 3 for Activities Safety\n')
 
 def note_taking():
     pass
@@ -127,16 +135,16 @@ def main():
     main_menu = True
 
     while main_menu:
-        print('Select from the following list.')
+        print('Select from the following list.\n')
         print('1. Pregnancy Information')
         print('2. Safety Information')
-        print('3. Take Down Notes')
+        print('3. Take Down Notes\n')
 
         choice = input('Enter your choice (1, 2 or 3): ')
         print_separator_line()
 
         if choice == '1':
-            pregnancy_information()
+            main_menu = pregnancy_information()
         elif choice == '2':
             safety_info()
         elif choice == '3':
@@ -144,19 +152,19 @@ def main():
         else:
             print('Invalid choice. Please enter 1, 2 or 3.\n')
 
-        while True:
-            next_choice = input('What would you like to do next?\n'
-                                '1. Return to the main menu?\n'
-                                '2. Exit the app\n'
-                                'Enter your choice (1 or 2): ')
+        # while True:
+        #     next_choice = input('What would you like to do next?\n'
+        #                         '1. Return to the main menu?\n'
+        #                         '2. Exit the app\n'
+        #                         'Enter your choice (1 or 2): ')
 
-            if next_choice == '1':
-                break
-            elif next_choice == '2':
-                main_menu = False
-                break
-            else:
-                print('Invalid choice. Please enter 1 or 2.\n')
+        #     if next_choice == '1':
+        #         break
+        #     elif next_choice == '2':
+        #         main_menu = False
+        #         break
+        #     else:
+        #         print('Invalid choice. Please enter 1 or 2.\n')
 
 if __name__ == "__main__":
     main()

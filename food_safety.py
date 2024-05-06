@@ -17,7 +17,7 @@ def check_food_safety(food):
 
     while True:
 
-        with open('food_safety_list.csv') as f:
+        with open('food_safety_list.csv', encoding="utf-8") as f:
             reader = csv.DictReader(f)
             for row in reader:
                 if row['Food'].lower() == food.lower():
