@@ -15,6 +15,7 @@ from pregnancy_calculator import (
     calculate_due_date,
     calculate_countdown
 )
+from food_safety import check_food_safety
 
 def pregnancy_information():
     """
@@ -43,7 +44,7 @@ def pregnancy_information():
         print(f"Estimated Due Date: {due_date.strftime('%d/%m/%Y')}")
         print(f'Due Date: {weeks_remaining} week(s) and {days_remaining} day(s)')
 
-        print_separator_line
+        print_separator_line()
 
         while True:
             next_choice = input('What would you like to do next?\n'
@@ -68,16 +69,21 @@ def get_last_period_date():
     """
     while True:
         user_input_date = input('Enter the date of your last menstrual period (DD/MM/YYYY): ')
-        
+
         try:
             last_period_date = datetime.strptime(user_input_date, '%d/%m/%Y').date()
             return last_period_date
         except ValueError:
-            print_separator_line
+            print_separator_line()
             print('Error: You entered an invalid format. Please enter the date in DD/MM/YYYY.')
 
 def precautions():
-    pass
+    select_precaution = input('Enter 1 to select Food Safety')
+
+    if select_precaution == '1':
+        food = input('Enter food.')
+        safety_info = check_food_safety(food)
+        print(f'{food}: {safety_info}')
 
 def note_taking():
     pass
