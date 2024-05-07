@@ -1,5 +1,5 @@
 Food,Safety Info,Precaution,Food handling,Category
-Alfalfa Sprouts,Safe to eat,Don't eat raw. Avoid pre-prepared salads from salad bars  as they may not have been freshly prepared.,Wash before cooking. Cook thoroughly.,Vegetable
+Alfalfa Sprouts,Safe to eat,Do not  eat raw. Avoid pre-prepared salads from salad bars  as they may not have been freshly prepared.,Wash before cooking. Cook thoroughly.,Vegetable
 Apple,Safe to eat,,Thoroughly wash before eating,Fruit
 Apricot,Safe to eat,,Thoroughly wash before eating,Fruit
 Artichoke,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
@@ -9,7 +9,7 @@ Atemoya,Safe to eat,,Thoroughly wash before opening,Fruit
 Avocado,Safe to eat,,Thoroughly wash before opening,Fruit
 Bamboo Shoots,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
 Banana,Safe to eat,,Thoroughly wash before opening,Fruit
-Bean Sprouts,Safe to eat,Don't eat raw. Avoid pre-prepared salads from salad bars  as they may not have been freshly prepared.,Wash before cooking. Cook thoroughly.,Vegetable
+Bean Sprouts,Safe to eat,Do not  eat raw. Avoid pre-prepared salads from salad bars  as they may not have been freshly prepared.,Wash before cooking. Cook thoroughly.,Vegetable
 Beans,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
 Beets,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
 Belgian Endive,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
@@ -22,10 +22,10 @@ Boniato,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
 Boysenberries,Safe to eat,,Thoroughly wash before eating,Fruit
 Broccoflower,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
 Broccoli,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
-Brussels Sprouts,Safe to eat,Don't eat raw. Avoid pre-prepared salads from salad bars  as they may not have been freshly prepared.,Wash before cooking. Cook thoroughly.,Vegetable
+Brussels Sprouts,Safe to eat,Do not  eat raw. Avoid pre-prepared salads from salad bars  as they may not have been freshly prepared.,Wash before cooking. Cook thoroughly.,Vegetable
 Cabbage,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
 Cactus Pear,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
-Cantaloupe,Safe to eat,Don't eat commercial pre-cut fruit,Thoroughly wash before opening,Fruit
+Cantaloupe,Safe to eat,Do not eat commercial pre-cut fruit,Thoroughly wash before opening,Fruit
 Carambola,Safe to eat,,Thoroughly wash before opening,Fruit
 Carrots,Safe to eat,,Thoroughly wash before opening,Fruit
 Casaba Melon,Safe to eat,,Thoroughly wash before opening,Fruit
@@ -66,7 +66,7 @@ Kiwifruit,Safe to eat,,Thoroughly wash before opening,Fruit
 Kohlrabi,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
 Kumquat,Safe to eat,,Thoroughly wash before opening,Fruit
 Leeks,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
-Lemons,Safe to eat,Don’t' drink freshly squeezed juices from cafes,Thoroughly wash before slicing and squeezing,Fruit
+Lemons,Safe to eat,Do not drink freshly squeezed juices from cafes,Thoroughly wash before slicing and squeezing,Fruit
 Lettuce,Safe to eat,,Thoroughly wash before eating,Vegetable
 Lima Beans,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
 Limes,Safe to eat,,Thoroughly wash before slicing and squeezing,Fruit
@@ -107,13 +107,13 @@ Raisins,Safe to eat,,Thoroughly wash before eating,Fruit
 Raspberries,Safe to eat,,Thoroughly wash before eating,Fruit
 Red Cabbage,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
 Rhubarb,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
-Rockmelon,Safe to eat,Don't eat commercial pre-cut fruit,Thoroughly wash before opening,Fruit
+Rockmelon,Safe to eat,Do not eat commercial pre-cut fruit,Thoroughly wash before opening,Fruit
 Romaine Lettuce,Safe to eat,,Thoroughly wash before eating,Vegetable
 Rutabaga,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
 Shallots,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
 Snow Peas,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
 Spinach,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
-Sprouts,Safe to eat,Don't eat raw. Avoid pre-prepared salads from salad bars  as they may not have been freshly prepared.,Wash before cooking. Cook thoroughly.,Vegetable
+Sprouts,Safe to eat,Do not  eat raw. Avoid pre-prepared salads from salad bars  as they may not have been freshly prepared.,Wash before cooking. Cook thoroughly.,Vegetable
 Squash,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
 Strawberries,Safe to eat,,Thoroughly wash before eating,Fruit
 String Beans,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
@@ -133,28 +133,17 @@ Yellow Squash,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
 Yuca,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
 Zucchini Squash,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
 Cassava,Safe to eat,,Wash before cooking. Cook thoroughly.,Vegetable
-Alcohol,Not advisable,"The effect of low to moderate drinking is less
-clear. Not drinking alcohol is the safest option.",,Drinks
-Coffee,Limit  200 mg per day,"Large amounts of caffeine may increase the chance of
-miscarriage or low birth weight.",,Drinks
-Tea,Limit  200 mg per day,"Large amounts of caffeine may increase the chance of
-miscarriage or low birth weight.",,Drinks
-Chocolate,Limit  200 mg per day,"Large amounts of caffeine may increase the chance of
-miscarriage or low birth weight.",,Drinks
-Hot chocolate,Limit  200 mg per day,"Large amounts of caffeine may increase the chance of
-miscarriage or low birth weight.",,Drinks
-Cola drinks,Limit  200 mg per day,"Large amounts of caffeine may increase the chance of
-miscarriage or low birth weight.",,Drinks
-Coke,Limit  200 mg per day,"Large amounts of caffeine may increase the chance of
-miscarriage or low birth weight.",,Drinks
-Softdrinks,Limit  200 mg per day,"Large amounts of caffeine may increase the chance of
-miscarriage or low birth weight.",,Drinks
-Energy drinks,Not safe to drink,"Contain
-caffeine or guarana (a source of caffeine)",,Drinks
-Red Bull,Not safe to drink,"Contain
-caffeine or guarana (a source of caffeine)",,Drinks
-V,Not safe to drink,"Contain
-caffeine or guarana (a source of caffeine)",,Drinks
+Alcohol,Not advisable,The effect of low to moderate drinking is less clear. Not drinking alcohol is the safest option.,,Drinks
+Coffee,Limit  200 mg per day,Large amounts of caffeine may increase the chance of miscarriage or low birth weight.,,Drinks
+Tea,Limit  200 mg per day,Large amounts of caffeine may increase the chance of miscarriage or low birth weight.,,Drinks
+Chocolate,Limit  200 mg per day,Large amounts of caffeine may increase the chance of miscarriage or low birth weight.,,Drinks
+Hot chocolate,Limit  200 mg per day,Large amounts of caffeine may increase the chance of miscarriage or low birth weight.,,Drinks
+Cola drinks,Limit  200 mg per day,Large amounts of caffeine may increase the chance of miscarriage or low birth weight.,,Drinks
+Coke,Limit  200 mg per day,Large amounts of caffeine may increase the chance of miscarriage or low birth weight.,,Drinks
+Softdrinks,Limit  200 mg per day,Large amounts of caffeine may increase the chance of miscarriage or low birth weight.,,Drinks
+Energy drinks,Not safe to drink,Contain caffeine or guarana which is a source of caffeine,,Drinks
+Red Bull,Not safe to drink,Contain caffeine or guarana which is a source of caffeine,,Drinks
+V,Not safe to drink,Contain caffeine or guarana which is a source of caffeine,,Drinks
 Fish,Safe to eat,There are few fish that are high in mercury content and must limit the consumption.,Thoroughly cook,Seafood
 Shark,Safe to eat,Limit due to mercury content,Thoroughly cook,Seafood
 Shark (flake),Safe to eat,Limit due to mercury content,Thoroughly cook,Seafood
@@ -171,7 +160,7 @@ Shrimps,Safe to eat,,Thoroughly cook,Seafood
 Liver,Safe to eat,"Limit to very small amounts, no more than 50 grams a week.",Thoroughly cook,Animals
 Multivitamins,Safe to take,Multivitamin supplements that are not designed for pregnancy may contain retinol.,,Supplements
 Sushi,Safe to eat,Avoid sushi that contains raw fish,Thoroughly cook,Seafood
-Egg,Safe to eat,Avoid raw or undercooked (runny) eggs.,Thoroughly cook,Egg
+Egg,Safe to eat,Avoid raw or undercooked eggs.,Thoroughly cook,Egg
 Sesame seeds,Safe to eat,Avoid eating raw sesame seeds.,Sesame seeds that have been heat treated are safe to eat.,Seeds
 Meat,Safe to eat,Avoid eating raw and undercook meat.,Thoroughly cook,Meat
 Chicken,Safe to eat,Avoid eating raw and undercook meat.,Thoroughly cook,Meat
@@ -185,14 +174,10 @@ Cream,Safe to eat,Avoid unpasteurized dairy foods ,,Dairy
 Buttermilk,Safe to eat,Avoid unpasteurized dairy foods ,,Dairy
 Custard,Safe to eat,Avoid unpasteurized dairy foods ,,Dairy
 Ice cream,Safe to eat,Avoid unpasteurized dairy foods and soft serve ice-cream.,,Dairy
-Cheese,Safe to eat,"There are few types of cheese that must only be eaten if used in cooked dish (e.i. brie, camembert, ricotta, feta, blue cheese)",,Dairy
-Mayonnaise,Safe to eat,"Avoid homemade & café-made
-mayonnaise which may contain
-raw eggs",,Mayonnaise
+Cheese,Safe to eat,There are few types of cheese that must only be eaten if used in cooked dish,,Dairy
+Mayonnaise,Safe to eat,Avoid homemade & cafe-made mayonnaise which may contain raw eggs,,Mayonnaise
 Soy milk,Safe to drink,,,Soy
 Tofu,Safe to eat,,Thoroughly cook,Soy
 Soy yoghurt,Safe to eat,,,Soy
-Canned goods,Safe to eat,"Follow storage instructions
-after opening",Thoroughly cook,Canned goods
-Canned foods,Safe to eat,"Follow storage instructions
-after opening",Thoroughly cook,Canned goods
+Canned goods,Safe to eat,Follow storage instructions after opening,Thoroughly cook,Canned goods
+Canned foods,Safe to eat,Follow storage instructions after opening,Thoroughly cook,Canned goods
