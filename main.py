@@ -44,27 +44,12 @@ def pregnancy_information():
         print(f'\nYou are {gestational_age} weeks pregnant.\n')
         print(f'Trimester: {trimester}')
         print(f"Estimated Due Date: {due_date.strftime('%d/%m/%Y')}")
-        print(f'Due Date: {weeks_remaining} week(s) and {days_remaining} day(s)')
+        print(f'Due Date Countdown: {weeks_remaining} week(s) and {days_remaining} day(s)')
 
         print_separator_line()
 
-        while True:
-            next_choice = input('What would you like to do next?\n\n'
-                                '1. Continue\n'
-                                '2. Return to main menu\n'
-                                '3. Exit the app\n'
-                                'Enter your choice (1, 2 or 3): ')
-            
-            print_separator_line()
-
-            if next_choice == '1':
-                break
-            elif next_choice == '2':
-                return
-            elif next_choice == '3':
-                return False
-            else:
-                print('Invalid choice. Please enter 1 or 2.\n')
+        if not get_user_next_action():
+            break
 
 def get_last_period_date():
     """
@@ -75,7 +60,7 @@ def get_last_period_date():
 
     """
     while True:
-        user_input_date = input('\nEnter the date of your last menstrual period (DD/MM/YYYY): ')
+        user_input_date = input('Enter the date of your last menstrual period (DD/MM/YYYY): ')
 
         try:
             last_period_date = datetime.strptime(user_input_date, '%d/%m/%Y').date()
@@ -124,47 +109,63 @@ def print_separator_line(length=100):
     """
     print('-' * length)
 
+def get_user_next_action():
+    """
+    Prompt the user for the next action whether to continue in current sub menu, return to main menu or exit.
+
+    Returns:
+        bool: True is user chooses to continue, False if user chooses to return to main menu.
+    """
+    while True:
+        next_choice = input('What would you like to do next?\n\n'
+                            '1. Continue\n'
+                            '2. Return to main menu\n'
+                            '3. Exit the app\n'
+                            'Enter your choice (1, 2 or 3): ')
+
+        print_separator_line()
+
+        if next_choice == '1':
+            return True
+        elif next_choice == '2':
+            return False
+        elif next_choice == '3':
+            print('Thank you for using the app. Goodbye!')
+            exit()
+        else:
+            print('Invalid choice. Please enter 1, 2 or 3.\n')
+
 def main():
     """
     Main function that allows the user to select from the features of pregnancy tracker app.
     """
 
     print('\nWelcome to Pregnancy Tracker App!\n')
-    print('What would you like to know? ')
 
     main_menu = True
 
     while main_menu:
-        print('Select from the following list.\n')
+        print('What would you like to do? ')
+        print('Select from the following.\n')
         print('1. Pregnancy Information')
         print('2. Safety Information')
-        print('3. Take Down Notes\n')
+        print('3. Take Down Notes')
+        print('4. Exit\n')
 
-        choice = input('Enter your choice (1, 2 or 3): ')
+        choice = input('Enter your choice (1, 2, 3 or 4): ')
         print_separator_line()
 
         if choice == '1':
-            main_menu = pregnancy_information()
+            pregnancy_information()
         elif choice == '2':
             safety_info()
         elif choice == '3':
             note_taking()
+        elif choice == '4':
+            print('Thank you for using the app. Goodbye!')
+            break
         else:
-            print('Invalid choice. Please enter 1, 2 or 3.\n')
-
-        # while True:
-        #     next_choice = input('What would you like to do next?\n'
-        #                         '1. Return to the main menu?\n'
-        #                         '2. Exit the app\n'
-        #                         'Enter your choice (1 or 2): ')
-
-        #     if next_choice == '1':
-        #         break
-        #     elif next_choice == '2':
-        #         main_menu = False
-        #         break
-        #     else:
-        #         print('Invalid choice. Please enter 1 or 2.\n')
+            print('Invalid choice. Please enter 1, 2, 3 or 4.\n')
 
 if __name__ == "__main__":
     main()
