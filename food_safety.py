@@ -12,7 +12,7 @@ def check_food_safety(food):
         food (str): The food to be checked for safety.
 
     Returns:
-        str: The safety information of a certain food.
+        tuple: The safety information of a certain food.
     """
 
     while True:
@@ -21,6 +21,7 @@ def check_food_safety(food):
             reader = csv.DictReader(f)
             for row in reader:
                 if row['Food'].lower() == food.lower():
-                    return row['Safety Info']
+                    print(row['Safety Info'], row['Precaution'], row['Food handling'])
+                    return True, row['Safety Info'], row['Precaution'], row['Food handling']
 
-        return 'Safety information is not available for this food.'
+        return False, None, None, None
