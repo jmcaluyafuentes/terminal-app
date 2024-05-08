@@ -26,8 +26,11 @@ def pregnancy_information():
     in weeks, trimester, estimated due date (EDD) and countdown until EDD.
     """
     while True:
-
+        
         last_period_date = get_last_period_date()
+
+        if not last_period_date:
+            user_select_exit(last_period_date)
 
         # Calculate gestational age in weeks
         gestational_age = calculate_gestational_age(last_period_date)
@@ -67,14 +70,17 @@ def get_last_period_date():
 
     """
     while True:
+        print('Enter "QUIT" anytime to exit the app.\n')
         user_input_date = input('Enter the date of your last menstrual period (DD/MM/YYYY): ')
+        print_separator_line()
+
+        user_select_exit(user_input_date)
 
         try:
             last_period_date = datetime.strptime(user_input_date, '%d/%m/%Y').date()
             return last_period_date
         except ValueError:
-            print_separator_line()
-            print('Error: You entered an invalid format. Please enter the date in DD/MM/YYYY.')
+            print('Error: You entered an invalid format. Please enter the date in DD/MM/YYYY.\n')
 
 def safety_info():
     """
@@ -94,6 +100,8 @@ def safety_info():
 
         if choice == '1':
             food = input('Enter a food item: ').lower()
+
+            user_select_exit(food)
 
             # Calls the function check_food_safety(food) in food_safety module
             available, food_safety_info, food_precaution, food_handling = check_food_safety(food)
@@ -138,23 +146,28 @@ def get_user_next_action():
         bool: True is user chooses to continue, False if user chooses to return to main menu.
     """
     while True:
+        print('Enter "QUIT" anytime to exit the app.\n')
         next_choice = input('What would you like to do next?\n\n'
                             '1. Continue\n'
                             '2. Return to main menu\n'
-                            '3. Exit the app\n'
-                            'Enter your choice (1, 2 or 3): ')
+                            'Enter your choice (1 or 2): ')
 
         print_separator_line()
+
+        user_select_exit(next_choice)
 
         if next_choice == '1':
             return True
         elif next_choice == '2':
             return False
-        elif next_choice == '3':
-            print('Thank you for using the app. Goodbye!')
-            sys.exit()
         else:
             print('Invalid choice. Please enter 1, 2 or 3.\n')
+
+def user_select_exit(choice):
+    if choice.lower() == 'quit':
+        # print_separator_line()
+        print('\nThank you for using the app. Goodbye!\n')
+        sys.exit()
 
 def main():
     """
@@ -169,11 +182,13 @@ def main():
         print('Select from the following options.\n')
         print('1. Pregnancy Information')
         print('2. Safety Information')
-        print('3. Take Down Notes')
-        print('4. Exit\n')
+        print('3. Take Down Notes\n')
+        print('Enter "QUIT" anytime to exit the app.\n')
 
-        choice = input('Enter your choice (1, 2, 3 or 4): ')
+        choice = input('Enter your choice (1, 2 or 3): ')
         print_separator_line()
+
+        user_select_exit(choice)
 
         if choice == '1':
             pregnancy_information()
@@ -181,9 +196,6 @@ def main():
             safety_info()
         elif choice == '3':
             note_taking()
-        elif choice == '4':
-            print('Thank you for using the app. Goodbye!')
-            break
         else:
             print('Invalid choice. Please enter 1, 2, 3 or 4.\n')
 
