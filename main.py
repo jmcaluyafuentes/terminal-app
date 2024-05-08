@@ -20,6 +20,27 @@ from food_safety import check_food_safety
 from travel_safety import check_travel_safety
 from activities_safety import check_activities_safety
 
+def get_last_period_date():
+    """
+    Prompt user to enter the last menstrual period date and parse the input for validation.
+
+    Returns:
+        datetime.date: The parsed date object representing the last menstrual period date.
+
+    """
+    while True:
+        print('Enter "QUIT" anytime to exit the app.\n')
+        user_input_date = input('Enter the date of your last menstrual period (DD/MM/YYYY): ')
+        print_separator_line()
+
+        user_select_exit(user_input_date)
+
+        try:
+            last_period_date = datetime.strptime(user_input_date, '%d/%m/%Y').date()
+            return last_period_date
+        except ValueError:
+            print('Error: You entered an invalid format. Please enter the date in DD/MM/YYYY.\n')
+            
 def pregnancy_information():
     """
     Calculate and display the information about pregnancy such as gestational age 
@@ -61,27 +82,6 @@ def pregnancy_information():
         if not get_user_next_action():
             break # Return to main menu
 
-def get_last_period_date():
-    """
-    Prompt user to enter the last menstrual period date and parse the input for validation.
-
-    Returns:
-        datetime.date: The parsed date object representing the last menstrual period date.
-
-    """
-    while True:
-        print('Enter "QUIT" anytime to exit the app.\n')
-        user_input_date = input('Enter the date of your last menstrual period (DD/MM/YYYY): ')
-        print_separator_line()
-
-        user_select_exit(user_input_date)
-
-        try:
-            last_period_date = datetime.strptime(user_input_date, '%d/%m/%Y').date()
-            return last_period_date
-        except ValueError:
-            print('Error: You entered an invalid format. Please enter the date in DD/MM/YYYY.\n')
-
 def safety_info():
     """
     Prompt user to select from the three topics related to safety in pregnancy.
@@ -120,7 +120,10 @@ def safety_info():
                 print_separator_line()
 
         elif choice == '2':
+
+            # Calls the function check_travel_safety(food) in travel_safety module
             check_travel_safety()
+
         elif choice == '3':
             check_activities_safety()
         else:
