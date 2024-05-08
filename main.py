@@ -5,10 +5,11 @@ Term 1, Assignment 3
 Web Development Accelerated Program
 Coder Academy
 
-Author: John Fuentes
+Student/Author: John Fuentes
 """
 
 from datetime import datetime
+import sys
 from pregnancy_calculator import (
     calculate_gestational_age,
     calculate_trimester,
@@ -48,8 +49,14 @@ def pregnancy_information():
 
         print_separator_line()
 
+        # user_quit = input('Enter a command or type "QUIT" to exit: ')
+
+        # if user_quit.strip().lower() == 'quit':
+        #     print('Thank you for using the app. Goodbye!')
+        #     sys.exit()
+
         if not get_user_next_action():
-            break
+            break # Return to main menu
 
 def get_last_period_date():
     """
@@ -87,9 +94,23 @@ def safety_info():
 
         if choice == '1':
             food = input('Enter a food item: ').lower()
-            food_safety_info = check_food_safety(food)
-            print(f'\n{food.capitalize()}: {food_safety_info}')
-            print_separator_line()
+
+            # Calls the function check_food_safety(food) in food_safety module
+            available, food_safety_info, food_precaution, food_handling = check_food_safety(food)
+
+            if available:
+                print(f'\nFood: {food.capitalize()}\n')
+                print(f'Food Safety Information: {food_safety_info}')
+                if food_precaution:
+                    print(f'Precaution: {food_precaution}')
+                if food_handling:
+                    print(f'Food Handling: {food_handling}')
+
+                print_separator_line()
+            else:
+                print(f'Safety information of "{food}" is not available.')
+                print_separator_line()
+
         elif choice == '2':
             check_travel_safety()
         elif choice == '3':
@@ -100,7 +121,7 @@ def safety_info():
 def note_taking():
     pass
 
-def print_separator_line(length=100):
+def print_separator_line(length=110):
     """
     Print hyphens in a single line as a separator.
 
@@ -131,7 +152,7 @@ def get_user_next_action():
             return False
         elif next_choice == '3':
             print('Thank you for using the app. Goodbye!')
-            exit()
+            sys.exit()
         else:
             print('Invalid choice. Please enter 1, 2 or 3.\n')
 
@@ -145,8 +166,7 @@ def main():
     main_menu = True
 
     while main_menu:
-        print('What would you like to do? ')
-        print('Select from the following.\n')
+        print('Select from the following options.\n')
         print('1. Pregnancy Information')
         print('2. Safety Information')
         print('3. Take Down Notes')
