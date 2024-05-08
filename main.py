@@ -40,14 +40,14 @@ def get_last_period_date():
             return last_period_date
         except ValueError:
             print('Error: You entered an invalid format. Please enter the date in DD/MM/YYYY.\n')
-            
+
 def pregnancy_information():
     """
     Calculate and display the information about pregnancy such as gestational age 
     in weeks, trimester, estimated due date (EDD) and countdown until EDD.
     """
     while True:
-        
+
         last_period_date = get_last_period_date()
 
         if not last_period_date:
@@ -81,6 +81,23 @@ def pregnancy_information():
 
         if not get_user_next_action():
             break # Return to main menu
+
+def get_travel_date():
+    """
+    Prompt user to enter the planned travel date for validation.
+
+    Returns:
+        datetime.date: The parsed date object representing the date of planned travel.
+
+    """
+    while True:
+        user_input_date = input('Enter the date of your planned travel (DD/MM/YYYY): ')
+
+        try:
+            travel_date = datetime.strptime(user_input_date, '%d/%m/%Y').date()
+            return travel_date
+        except ValueError:
+            print('Error: You entered an invalid format. Please enter the date in DD/MM/YYYY.\n')
 
 def safety_info():
     """
@@ -121,8 +138,22 @@ def safety_info():
 
         elif choice == '2':
 
-            # Calls the function check_travel_safety(food) in travel_safety module
-            check_travel_safety()
+            last_period_date = get_last_period_date()
+            travel_date = get_travel_date()
+            info_1, info_2, info_3, info_4, info_5 = check_travel_safety(travel_date, last_period_date)
+
+            if info_1:
+                print(f'1. {info_1}')
+            if info_2:
+                print(f'2. {info_2}')
+            if info_3:
+                print(f'3. {info_3}')
+            if info_4:
+                print(f'4. {info_4}')
+            if info_5:
+                print(f'5. {info_5}')
+
+            print_separator_line()
 
         elif choice == '3':
             check_activities_safety()
@@ -200,7 +231,7 @@ def main():
         elif choice == '3':
             note_taking()
         else:
-            print('Invalid choice. Please enter 1, 2, 3 or 4.\n')
+            print('Invalid choice. Please enter 1, 2 or 3.\n')
 
 if __name__ == "__main__":
     main()

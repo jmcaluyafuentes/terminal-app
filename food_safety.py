@@ -1,5 +1,5 @@
 """
-This module is used to check food safety
+This module is used to check food safety information in CSV file.
 """
 
 import csv
@@ -21,7 +21,6 @@ def check_food_safety(food):
             reader = csv.DictReader(f)
             for row in reader:
                 if row['Food'].lower() == food.lower():
-                    print(row['Safety Info'], row['Precaution'], row['Food handling'])
                     return True, row['Safety Info'], row['Precaution'], row['Food handling']
 
         return False, None, None, None
