@@ -67,12 +67,12 @@ def check_travel_safety(travel_date, last_period_date):
 
                 for row in reader:
                     if int(row['Question No.']) == user_selected:
-                        return (
+                        return [
                             row['Info 1'],
                             row['Info 2'],
                             row['Info 3'],
                             row['Info 4'],
                             row['Info 5']
-                        )
+                        ]
 
             return (None, None, None, None, None)

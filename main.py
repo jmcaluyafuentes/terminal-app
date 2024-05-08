@@ -121,9 +121,9 @@ def safety_info():
             user_select_exit(food)
 
             # Calls the function check_food_safety(food) in food_safety module
-            available, food_safety_info, food_precaution, food_handling = check_food_safety(food)
+            food_safety_info, food_precaution, food_handling = check_food_safety(food)
 
-            if available:
+            if food_safety_info:
                 print(f'\nFood: {food.capitalize()}\n')
                 print(f'Food Safety Information: {food_safety_info}')
                 if food_precaution:
@@ -140,18 +140,13 @@ def safety_info():
 
             last_period_date = get_last_period_date()
             travel_date = get_travel_date()
-            info_1, info_2, info_3, info_4, info_5 = check_travel_safety(travel_date, last_period_date)
 
-            if info_1:
-                print(f'1. {info_1}')
-            if info_2:
-                print(f'2. {info_2}')
-            if info_3:
-                print(f'3. {info_3}')
-            if info_4:
-                print(f'4. {info_4}')
-            if info_5:
-                print(f'5. {info_5}')
+            # Obtain the travel information from travel_safety module
+            travel_infos = check_travel_safety(travel_date, last_period_date)
+
+            for index, travel_info in enumerate(travel_infos, 1):
+                if travel_info:
+                    print(f'{index}. {travel_info}')
 
             print_separator_line()
 
