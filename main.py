@@ -8,8 +8,10 @@ Coder Academy
 Student/Author: John Fuentes
 """
 
+# Import statements
 import sys
 from datetime import datetime
+from print_guide import guide, instructions
 from pregnancy_calculator import (
     calculate_gestational_age,
     calculate_trimester,
@@ -20,6 +22,7 @@ from food_safety import check_food_safety
 from travel_safety import check_travel_safety
 from activities_safety import check_activities_safety
 
+# Helper functions
 def get_last_period_date() -> datetime.date:
     """
     Prompt user to enter the last menstrual period date and parse the input for validation.
@@ -53,7 +56,6 @@ def get_travel_date() -> datetime.date:
 
     Returns:
         datetime.date: The parsed date object representing the date of planned travel.
-
     """
 
     while True:
@@ -122,6 +124,7 @@ def user_select_exit(choice: str) -> None:
         print('\nThank you for using the app. Goodbye!\n')
         sys.exit()
 
+# Main functions
 def pregnancy_information() -> None:
     """
     Calculate and display the information about pregnancy such as gestational age 
@@ -232,22 +235,25 @@ def safety_info() -> None:
 def note_taking():
     pass
 
+# Execution entry point
 def main() -> None:
     """
     Main function that allows the user to select from the features of pregnancy tracker app.
     """
 
-    print('\nWelcome to Pregnancy Tracker App!\n')
+    print('\nWelcome to Pregnancy Tracker App!')
 
-    main_menu = True
+    # Display the guide for instructions and for quitting the app
+    guide() # From print_guide module
 
-    while main_menu:
+    while True:
+        print_separator_line() # Print separator line of hyphens for aesthetics only
+
         # Give user options based on the features of this app
         print('Select from the following options.\n')
         print('1. Pregnancy Information')
         print('2. Safety Information')
         print('3. Take Down Notes\n')
-        print('Enter "QUIT" anytime to exit the app.\n')
 
         # Prompt the user of her choice
         choice = input('Enter your choice (1, 2 or 3): ')
@@ -264,9 +270,12 @@ def main() -> None:
             safety_info()
         elif choice == '3':
             note_taking()
+        elif choice.lower() == 'instructions':
+            instructions()
         else:
             # Inform the user if she entered invalid choice
             print('Invalid choice. Please enter 1, 2 or 3.\n')
 
+# Execute main function when the script is run
 if __name__ == "__main__":
     main()
