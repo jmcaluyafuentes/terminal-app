@@ -47,6 +47,81 @@ def get_last_period_date() -> datetime.date:
             # Handles error gracefully if user entered invalid date format
             print('Error: You entered an invalid format. Please enter the date in DD/MM/YYYY.\n')
 
+def get_travel_date() -> datetime.date:
+    """
+    Prompt user to enter the planned travel date for validation.
+
+    Returns:
+        datetime.date: The parsed date object representing the date of planned travel.
+
+    """
+
+    while True:
+        # Prompt the user the date of her planned travel date
+        user_input_date = input('Enter the date of your planned travel (DD/MM/YYYY): ')
+
+        try:
+            # Convert user input string into datetime.date object in DD/MM/YYYY format
+            travel_date = datetime.strptime(user_input_date, '%d/%m/%Y').date()
+            return travel_date
+        except ValueError:
+            # Handles error gracefully if user entered invalid date format
+            print('Error: You entered an invalid format. Please enter the date in DD/MM/YYYY.\n')
+
+def print_separator_line(length=110):
+    """
+    Print hyphens in a single line as a separator.
+
+    Args:
+        length (int, optional): The number of hyphens in a separator line (default is 110).
+    """
+
+    # Print a separator line of hyphens for aesthetics only
+    print('-' * length)
+
+def get_user_next_action() -> bool:
+    """
+    Prompt the user for the next action whether to continue in current sub menu, return to main menu or exit.
+
+    Returns:
+        bool: True if user chooses to continue or False if user chooses to return to main menu.
+    """
+
+    while True:
+        # Give user an option to quit the app
+        print('Enter "QUIT" anytime to exit the app.\n')
+
+        # Prompt the user to get her response
+        next_choice = input('What would you like to do next?\n\n'
+                            '1. Continue\n'
+                            '2. Return to main menu\n'
+                            'Enter your choice (1 or 2): ')
+
+        print_separator_line() # Print separator line of hyphens for aesthetics only
+
+        # Check if user entered 'QUIT' case-insensitive
+        user_select_exit(next_choice)
+
+        # Check what choice the user selected
+        if next_choice == '1':
+            return True
+        elif next_choice == '2':
+            return False
+        else:
+            # Inform the user that she entered invalid choice
+            print('Invalid choice. Please enter 1, 2 or 3.\n')
+
+def user_select_exit(choice: str) -> None:
+    """
+    Check if user entered "QUIT" in case-insensitive.
+
+    Args:
+        choice (str): What user entered.
+    """
+    if choice.lower() == 'quit':
+        print('\nThank you for using the app. Goodbye!\n')
+        sys.exit()
+
 def pregnancy_information() -> None:
     """
     Calculate and display the information about pregnancy such as gestational age 
@@ -80,27 +155,6 @@ def pregnancy_information() -> None:
         # Prompt user what she wants to do next
         if not get_user_next_action():
             break # Return to main menu based on user choice
-
-def get_travel_date() -> datetime.date:
-    """
-    Prompt user to enter the planned travel date for validation.
-
-    Returns:
-        datetime.date: The parsed date object representing the date of planned travel.
-
-    """
-
-    while True:
-        # Prompt the user the date of her planned travel date
-        user_input_date = input('Enter the date of your planned travel (DD/MM/YYYY): ')
-
-        try:
-            # Convert user input string into datetime.date object in DD/MM/YYYY format
-            travel_date = datetime.strptime(user_input_date, '%d/%m/%Y').date()
-            return travel_date
-        except ValueError:
-            # Handles error gracefully if user entered invalid date format
-            print('Error: You entered an invalid format. Please enter the date in DD/MM/YYYY.\n')
 
 def safety_info() -> None:
     """
@@ -177,60 +231,6 @@ def safety_info() -> None:
 
 def note_taking():
     pass
-
-def print_separator_line(length=110):
-    """
-    Print hyphens in a single line as a separator.
-
-    Args:
-        length (int, optional): The number of hyphens in a separator line (default is 110).
-    """
-
-    # Print a separator line of hyphens for aesthetics only
-    print('-' * length)
-
-def get_user_next_action() -> bool:
-    """
-    Prompt the user for the next action whether to continue in current sub menu, return to main menu or exit.
-
-    Returns:
-        bool: True if user chooses to continue or False if user chooses to return to main menu.
-    """
-
-    while True:
-        # Give user an option to quit the app
-        print('Enter "QUIT" anytime to exit the app.\n')
-
-        # Prompt the user to get her response
-        next_choice = input('What would you like to do next?\n\n'
-                            '1. Continue\n'
-                            '2. Return to main menu\n'
-                            'Enter your choice (1 or 2): ')
-
-        print_separator_line() # Print separator line of hyphens for aesthetics only
-
-        # Check if user entered 'QUIT' case-insensitive
-        user_select_exit(next_choice)
-
-        # Check what choice the user selected
-        if next_choice == '1':
-            return True
-        elif next_choice == '2':
-            return False
-        else:
-            # Inform the user that she entered invalid choice
-            print('Invalid choice. Please enter 1, 2 or 3.\n')
-
-def user_select_exit(choice: str) -> None:
-    """
-    Check if user entered "QUIT" in case-insensitive.
-
-    Args:
-        choice (str): What user entered.
-    """
-    if choice.lower() == 'quit':
-        print('\nThank you for using the app. Goodbye!\n')
-        sys.exit()
 
 def main() -> None:
     """
