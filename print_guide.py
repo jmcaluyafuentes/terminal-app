@@ -4,16 +4,18 @@ the user will have an option to view the instructions
 or quit the application anywhere in the program.
 """
 
+from textwrap import dedent
+
 def guide() -> None:
     """
     Display the heading in every prompt.
     """
 
-    print('''
+    print(dedent('''
     1. When selecting an option, type the option number and hit enter.
     2. To display the instructions, type 'INSTRUCTIONS' and hit enter.
-    3. To quit the pregnancy tracker application, type 'QUIT' and hit enter.
-    ''')
+    3. To quit the pregnancy tracker app, type 'QUIT' and hit enter.
+    '''))
 
 def instructions() -> None:
     """
@@ -21,7 +23,7 @@ def instructions() -> None:
     """
     print('''
     Instructions
-          
+
     1. The Pregnancy Tracker App has three main features as follows.
         
         Feature 1: Pregnancy Information
@@ -44,13 +46,13 @@ def instructions() -> None:
     
     2. Type the option number to select a feature.
     3. Enter date in format DD/MM/YYYY.
-    4. Type 'INSTRUCTIONS' to view these instructions anytime.
-    5. Type 'QUIT' to exit the Pregnancy Tracker app anytime.
+    4. Type 'INSTRUCTIONS' to view these instructions at any given time.
+    5. Type 'QUIT' to exit the Pregnancy Tracker app at any given time.
     6. Hit ENTER after you type in the prompt (e.g., option number, INSTRUCTIONS, QUIT)
     ''')
 
     # User can exit the instructions display by pressing any key
-    user_input = input('Enter "CLOSE" to close these instructions.\n')
+    user_input = input('Enter "CLOSE" to exit these instructions.\n')
     if user_input.lower == 'close':
         return None
     # if user_input == 'quit':
