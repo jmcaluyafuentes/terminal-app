@@ -3,6 +3,7 @@ This module is used to check travel safety information in CSV file.
 """
 
 import csv
+from textwrap import dedent
 from datetime import datetime, date
 
 def calculate_gestational_age_on_travel(travel_date: datetime.date, last_period_date:datetime.date) -> int:
@@ -45,11 +46,11 @@ def check_travel_safety(travel_date: datetime.date, last_period_date: datetime.d
     Returns:
         tuple[str, str, str, str, str]: Several safety information about travel.
     """
-
     # Calculate the gestational age (in weeks) on the planned travel date
     weeks_pregnant_on_travel = calculate_gestational_age_on_travel(travel_date, last_period_date)
 
     # Display to user the gestational age (in weeks) on the planned travel date
+    print('General Information:')
     print(f'\nYou are {weeks_pregnant_on_travel} weeks during your planned travel on {travel_date.strftime("%d/%m/%Y")}.')
 
     # Check if user is on 2nd semester on planned travel date. 2nd semester is the safest to travel.
@@ -60,22 +61,20 @@ def check_travel_safety(travel_date: datetime.date, last_period_date: datetime.d
 
     while True:
         # Give the user the list of questions as a guide
-        print('The following are possible questions related to travel safety.\n')
-
-        print('Question 1: What are the general considerations when planning to travel?')
-        print('Question 2: What are the complications that a pregnant woman encounters?')
-        print('Question 3: What are the travel immunization warnings for pregnant women?')
-        print('Question 4: What are the risks of long-distance travel during pregnancy?')
-        print('Question 5: How to avoid deep vein thrombosis (DVT) when traveling?')
-        print('Question 6: What are the considerations in air travel?')
-        print('Question 7: What are the considerations when traveling by car?')
-        print('Question 8: What are the considerations if traveling in hot weather?')
-        print('Question 9: How to avoid food poisoning during travel?\n')
+        print(dedent('''The following are possible questions related to travel safety.\n
+        Question 1: What are the general considerations when planning to travel?
+        Question 2: What are the complications that a pregnant woman encounters?
+        Question 3: What are the travel immunization warnings for pregnant women?
+        Question 4: What are the risks of long-distance travel during pregnancy?
+        Question 5: How to avoid deep vein thrombosis (DVT) when traveling?
+        Question 6: What are the considerations in air travel?
+        Question 7: What are the considerations when traveling by car?
+        Question 8: What are the considerations if traveling in hot weather?
+        Question 9: How to avoid food poisoning during travel?\n
+        '''))
 
         # Prompt the user what question she would like an answer about the travel information
         user_selected = int(input('Please enter the number of your choice: '))
-
-        print('-' * 110) # print separator line of hyphens as aesthetics only
 
         while True:
             # Open the file food_safety_list.csv in read mode in context manager
