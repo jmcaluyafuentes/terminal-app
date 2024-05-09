@@ -9,10 +9,9 @@ Student/Author: John Fuentes
 """
 
 # Import statements
-import sys
 from textwrap import dedent
 from datetime import datetime
-from print_guide import guide, instructions
+from print_guide import guide, guide_user_response
 from pregnancy_calculator import (
     calculate_gestational_age,
     calculate_trimester,
@@ -75,21 +74,6 @@ def get_travel_date() -> datetime.date:
         except ValueError:
             # Handles error gracefully if user entered invalid date format
             print('Error: You entered an invalid format. Please enter the date in DD/MM/YYYY.\n')
-
-def guide_user_response(response: str) -> None:
-    """
-    Check if user enters 'INSTRUCTIONS' or 'QUIT' case-insensitive
-
-    Args:
-        response (str): User can enter 'INSTRUCTIONS' or 'QUIT' at any given time
-    """
-    # Check if user wants to view the instructions
-    if response.lower() == 'instructions':
-        instructions()
-
-    # Check if user wants to exit the app
-    if response.lower() == 'quit':
-        sys.exit()
 
 def get_user_next_action() -> bool:
     """

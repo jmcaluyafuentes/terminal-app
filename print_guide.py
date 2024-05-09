@@ -20,6 +20,21 @@ def guide() -> None:
     3. To quit the pregnancy tracker app, type 'QUIT' and hit enter.
     '''))
 
+def guide_user_response(response: str) -> None:
+    """
+    Check if user enters 'INSTRUCTIONS' or 'QUIT' case-insensitive
+
+    Args:
+        response (str): User can enter 'INSTRUCTIONS' or 'QUIT' at any given time
+    """
+    # Check if user wants to view the instructions
+    if response.lower() == 'instructions':
+        instructions()
+
+    # Check if user wants to exit the app
+    if response.lower() == 'quit':
+        sys.exit()
+
 def instructions() -> None:
     """
     Display the instructions on how to use the Pregnancy Tracker app.
