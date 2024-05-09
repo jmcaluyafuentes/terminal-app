@@ -44,7 +44,7 @@ def check_activities_safety() -> None:
             # Display the guide for instructions and for quitting the app
             guide() # From print_guide module
 
-            # Display the error message
+            # Display the error message for invalid user input
             print(f'Error: "{user_choice}" is an invalid choice.')
             print('Please enter 1 for Benefits, 2 for Exercises or 3 for Outdoor\n')
             activity_loop = False
@@ -64,10 +64,10 @@ def check_activities_safety() -> None:
                         if row['Topic'].lower() == topic.lower():
                             # If match found, extract the information from the current row
                             infos = [
-                                row['Info 1'], 
-                                row['Info 2'], 
-                                row['Info 3'], 
-                                row['Info 4'], 
+                                row['Info 1'],
+                                row['Info 2'],
+                                row['Info 3'],
+                                row['Info 4'],
                                 row['Info 5']
                             ]
                             # Extract the index and value pair in infos list

@@ -5,6 +5,7 @@ This module is used to check travel safety information in CSV file.
 import csv
 from textwrap import dedent
 from datetime import datetime, date
+from print_guide import guide_user_response
 
 def calculate_gestational_age_on_travel(travel_date: datetime.date, last_period_date:datetime.date) -> int:
     """
@@ -50,7 +51,7 @@ def check_travel_safety(travel_date: datetime.date, last_period_date: datetime.d
     weeks_pregnant_on_travel = calculate_gestational_age_on_travel(travel_date, last_period_date)
 
     # Display to user the gestational age (in weeks) on the planned travel date
-    print('General Information:')
+    print('\nGeneral Information:')
     print(f'\nYou are {weeks_pregnant_on_travel} weeks during your planned travel on {travel_date.strftime("%d/%m/%Y")}.')
 
     # Check if user is on 2nd semester on planned travel date. 2nd semester is the safest to travel.
@@ -74,9 +75,12 @@ def check_travel_safety(travel_date: datetime.date, last_period_date: datetime.d
         '''))
 
         # Prompt the user what question she would like an answer about the travel information
-        user_selected = int(input('Please enter the number of your choice: '))
+        user_selected = input('Please enter the number of your choice: ')
 
-        while True:
+        # Check if user want to view the instructions or exits the app
+        instructions = guide_user_response(user_selected)
+
+        while not instructions:
             # Open the file food_safety_list.csv in read mode in context manager
             with open('travel_safety_info.csv', encoding="utf-8-sig") as f:
                 # Create a dict object named reader
@@ -84,7 +88,7 @@ def check_travel_safety(travel_date: datetime.date, last_period_date: datetime.d
                 # Iterate over every row in the file
                 for row in reader:
                     # Check if the value in 'Question No.' column matches the user's entered question number
-                    if int(row['Question No.']) == user_selected:
+                    if int(row['Question No.']) == int(user_selected):
                         # If match found, it extract the information from the current row
                         return [
                             row['Info 1'],

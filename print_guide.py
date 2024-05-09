@@ -20,20 +20,26 @@ def guide() -> None:
     3. To quit the pregnancy tracker app, type 'QUIT' and hit enter.
     '''))
 
-def guide_user_response(response: str) -> None:
+def guide_user_response(response: str) -> bool:
     """
     Check if user enters 'INSTRUCTIONS' or 'QUIT' case-insensitive
 
     Args:
         response (str): User can enter 'INSTRUCTIONS' or 'QUIT' at any given time
+
+    Returns:
+        bool: True if the response matches "INSTRUCTIONS" (case-insensitive), otherwise False
     """
     # Check if user wants to view the instructions
     if response.lower() == 'instructions':
         instructions()
+        return True
 
     # Check if user wants to exit the app
     if response.lower() == 'quit':
         sys.exit()
+
+    return False
 
 def instructions() -> None:
     """
@@ -83,4 +89,4 @@ def instructions() -> None:
         elif user_input.lower() == 'quit':
             sys.exit()
         else:
-            print('You entered an invalid option.')
+            print(f'"{user_input}" is an invalid choice.')
