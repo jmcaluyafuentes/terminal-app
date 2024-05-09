@@ -36,21 +36,27 @@ def get_last_period_date() -> datetime.date:
 
     while True:
         # Prompt user to enter the date of her last menstrual period
-        user_input_date = input('Enter the date of your last menstrual period (DD/MM/YYYY): ')
+        user_input_date = input('\nEnter the date of your last menstrual period (DD/MM/YYYY): ')
 
         # Check if user want to view the instructions or exits the app
-        guide_user_response(user_input_date)
+        instruction = guide_user_response(user_input_date)
 
-        try:
-            # Convert user input string into datetime.date object in DD/MM/YYYY format
-            last_period_date = datetime.strptime(user_input_date, '%d/%m/%Y').date()
-            return last_period_date
-        except ValueError:
-            # Display the guide for instructions and for quitting the app
-            guide() # From print_guide module
+        while not instruction:
+            try:
+                # Convert user input string into datetime.date object in DD/MM/YYYY format
+                last_period_date = datetime.strptime(user_input_date, '%d/%m/%Y').date()
+                return last_period_date
+            except ValueError:
+                # Display the guide for instructions and for quitting the app
+                guide() # From print_guide module
 
-            # Handles error gracefully if user entered invalid date format
-            print('Error: You entered an invalid format. Please enter the date in DD/MM/YYYY.\n')
+                # Handles error gracefully if user entered invalid date format
+                print(dedent(f'''
+                Error: "{user_input_date}" is an invalid format.
+                Please enter the date in DD/MM/YYYY.\n'''
+                ))
+
+                instruction = True
 
 def get_travel_date() -> datetime.date:
     """
@@ -62,18 +68,26 @@ def get_travel_date() -> datetime.date:
 
     while True:
         # Prompt the user the date of her planned travel date
-        user_input_date = input('Enter the date of your planned travel (DD/MM/YYYY): ')
+        user_input_date = input('\nEnter the date of your planned travel (DD/MM/YYYY): ')
 
         # Check if user want to view the instructions or exits the app
         guide_user_response(user_input_date)
 
-        try:
-            # Convert user input string into datetime.date object in DD/MM/YYYY format
-            travel_date = datetime.strptime(user_input_date, '%d/%m/%Y').date()
-            return travel_date
-        except ValueError:
-            # Handles error gracefully if user entered invalid date format
-            print('Error: You entered an invalid format. Please enter the date in DD/MM/YYYY.\n')
+        input_check = True
+
+        # If user entered 'INSTRUCTIONS', repeat the while loop
+        if user_input_date.lower() == 'instructions':
+            input_check = False
+
+        while input_check:
+            try:
+                # Convert user input string into datetime.date object in DD/MM/YYYY format
+                travel_date = datetime.strptime(user_input_date, '%d/%m/%Y').date()
+                return travel_date
+            except ValueError:
+                # Handles error gracefully if user entered invalid date format
+                print(f'Error: "{user_input_date}" is an invalid format. Please enter the date in DD/MM/YYYY.\n')
+                input_check = False
 
 def get_user_next_action() -> bool:
     """
@@ -102,7 +116,7 @@ def get_user_next_action() -> bool:
             guide() # From print_guide module
 
             # Inform the user that she entered invalid choice
-            print('Invalid choice. Please enter 1, 2 or 3.\n')
+            print(f'"{next_choice}" is an invalid choice. Please enter 1, 2 or 3.')
 
 # Main functions
 def pregnancy_information() -> None:
@@ -149,7 +163,8 @@ def safety_info() -> None:
 
     while True:
         # Give the user options for the topics related to safety
-        print(dedent('''\nSelect a topic:\n
+        print(dedent('''
+        Select a topic:\n
         1. Food Safety
         2. Travel Safety
         3. Activities Safety
@@ -203,7 +218,7 @@ def safety_info() -> None:
             # Obtain the travel information from travel_safety module
             travel_infos = check_travel_safety(travel_date, last_period_date)
 
-            # Display travel safety information with indices
+            # Display travel safety information with indices from the list
             for index, travel_info in enumerate(travel_infos, 1):
                 # Display only if travel info is not an empty string
                 if travel_info:
@@ -213,7 +228,10 @@ def safety_info() -> None:
             check_activities_safety()
         else:
             # Inform the user that she entered an invalid choice
-            print('Error: Invalid choice. Please enter 1 for Food Safety, 2 for Travel Safety or 3 for Activities Safety\n')
+            print(dedent(f'''
+            Error: "{choice}" is an invalid choice.\n
+            Please enter 1 for Food Safety, 2 for Travel Safety or 3 for Activities Safety\n
+            '''))
 
 def note_taking():
     pass
@@ -226,10 +244,10 @@ def main() -> None:
 
     print('\nWelcome to Pregnancy Tracker App!\n')
 
-    while True:
-        # Display the guide for instructions and for quitting the app
-        guide() # From print_guide module
+    # Display the guide for instructions and for quitting the app
+    guide() # From print_guide module
 
+    while True:
         # Give user options based on the features of this app
         print(dedent('''
         Select from the following features.\n
@@ -252,8 +270,11 @@ def main() -> None:
         elif choice == '3':
             note_taking()
         else:
+            # Display the guide for instructions and for quitting the app
+            guide() # From print_guide module
+
             # Inform the user if she entered invalid choice
-            print('Invalid choice. Please enter 1, 2 or 3.\n')
+            print(f'"{choice}" is an invalid choice. Please enter 1, 2 or 3.')
 
 # Execute main function when the script is run
 if __name__ == "__main__":
