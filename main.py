@@ -21,6 +21,7 @@ from pregnancy_calculator import (
 from food_safety import check_food_safety
 from travel_safety import check_travel_safety
 from activities_safety import check_activities_safety
+from user_next_action import get_user_next_action
 
 # Helper functions
 def get_last_period_date() -> datetime.date:
@@ -85,46 +86,6 @@ def get_travel_date() -> datetime.date:
                 '''))
                 instructions = True
 
-def get_user_next_action() -> bool:
-    """
-    Prompt the user for the next action whether to continue in current sub menu,
-    return to main menu or exit.
-
-    Returns:
-        bool: True if user chooses to continue or False if user chooses to return to main menu.
-    """
-
-    user_next_action = True
-    while user_next_action:
-        # Prompt the user to get her response
-        next_choice = input('What would you like to do next?\n'
-                            '1. Continue\n'
-                            '2. Go back one menu up\n\n'
-                            'Enter your choice (1 or 2): ')
-
-        # Check if user want to view the instructions or exits the app
-        instructions = guide_user_response(next_choice)
-
-        user_choice = True
-
-        while not instructions:
-            # Check what choice the user selected
-            if next_choice == '1':
-                user_choice = True
-                user_next_action = False
-            elif next_choice == '2':
-                user_choice = False
-                user_next_action = False
-            else:
-                # Display the guide for instructions and for quitting the app
-                guide() # From print_guide module
-
-                # Inform the user that she entered invalid choice
-                print(f'"{next_choice}" is an invalid choice. Please enter 1 or 2.\n')
-            instructions = True
-
-    return user_choice
-
 # Main functions
 def pregnancy_information() -> None:
     """
@@ -157,7 +118,8 @@ def pregnancy_information() -> None:
         print(f'Due Date Countdown: {weeks_remaining} week(s) and {days_remaining} day(s)')
 
         # Prompt user what she wants to do next
-        if not get_user_next_action():
+        if not get_user_next_action(): # From user_next_action module
+
             # Display the guide for instructions and for quitting the app
             guide() # From print_guide module
             break # Return to main menu based on user choice
@@ -197,7 +159,8 @@ def food_safety() -> None:
                 print(f'Food Handling: {food_handling}\n')
 
             # Prompt user what she wants to do next
-            if not get_user_next_action():
+            if not get_user_next_action(): # From user_next_action function
+
                 # Display the guide for instructions and for quitting the app
                 guide() # From print_guide module
                 break # Return to main menu based on user choice
@@ -211,7 +174,8 @@ def food_safety() -> None:
             print(f'Sorry, the safety information of "{food}" is not available.\n')
 
             # Prompt user what she wants to do next
-            if not get_user_next_action():
+            if not get_user_next_action(): # From user next action module
+
                 # Display the guide for instructions and for quitting the app
                 guide() # From print_guide module
                 break # Return to main menu based on user choice
