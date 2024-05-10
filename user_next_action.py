@@ -12,9 +12,11 @@ def get_user_next_action() -> bool:
     Returns:
         bool: True if user chooses to continue or False if user chooses to return to main menu.
     """
-
     user_next_action = True
+
     while user_next_action:
+        user_choice = True
+
         # Prompt the user to get her response
         next_choice = input('\nWhat would you like to do next?\n'
                             '1. Continue\n'
@@ -24,12 +26,9 @@ def get_user_next_action() -> bool:
         # Check if user want to view the instructions or exits the app
         instructions = guide_user_response(next_choice)
 
-        user_choice = True
-
         while not instructions:
             # Check what choice the user selected
             if next_choice == '1':
-                user_choice = True
                 user_next_action = False
             elif next_choice == '2':
                 user_choice = False
