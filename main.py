@@ -10,7 +10,7 @@ Student/Author: John Fuentes
 
 # Import statements
 from textwrap import dedent
-from datetime import datetime
+from datetime import datetime, date
 from print_guide import guide, guide_user_response
 from pregnancy_calculator import calc_pregnancy_info
 from food_safety import check_food_safety
@@ -20,12 +20,12 @@ from user_next_action import get_user_next_action
 from user_notes import record_personal_notes, display_personal_notes
 
 # Helper functions
-def get_last_period_date() -> datetime.date:
+def get_last_period_date() -> date:
     """
     Prompt user to enter the last menstrual period date and parse the input for validation.
 
     Returns:
-        datetime.date: The parsed date object representing the last menstrual period date.
+        date: The parsed date object representing the last menstrual period date.
 
     """
     # Display the guide for instructions and for quitting the app
@@ -54,12 +54,12 @@ def get_last_period_date() -> datetime.date:
                 ))
                 instructions = True
 
-def get_travel_date() -> datetime.date:
+def get_travel_date() -> date:
     """
     Prompt user to enter the planned travel date for validation.
 
     Returns:
-        datetime.date: The parsed date object representing the date of planned travel.
+        date: The parsed date object representing the date of planned travel.
     """
 
     while True:
@@ -169,13 +169,13 @@ def food_safety() -> None:
                 guide() # From print_guide module
                 break # Return to main menu based on user choice
 
-def travel_safety(travel_date: datetime.date, last_period_date: datetime.date) -> None:
+def travel_safety(travel_date: date, last_period_date: date) -> None:
     """
     Display the travel information based on the gestational age during the planned travel date.
 
     Args:
-        travel_date (datetime.date): The planned travel date.
-        last_period_date (datetime.date): The date of last menstrual period.
+        travel_date (date): The planned travel date.
+        last_period_date (date): The date of last menstrual period.
     """
     while True:
         # Obtain the travel information from travel_safety module

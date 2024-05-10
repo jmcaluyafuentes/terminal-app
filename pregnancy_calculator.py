@@ -6,16 +6,16 @@ gestational age in weeks, trimester, estimated due date (EDD) and countdown unti
 from datetime import datetime, date, timedelta
 
 
-def calc_pregnancy_info(last_period_date) -> tuple[int, str, datetime.date, int, int]:
+def calc_pregnancy_info(last_period_date: date) -> tuple[int, str, date, int, int]:
     """
     Calculate and display the information about pregnancy such as gestational age
     in weeks, trimester, estimated due date (EDD) and countdown until EDD.
 
     Args:
-        last_period_date (datetime.date): The last menstrual period date.
+        last_period_date (date): The last menstrual period date.
 
     Returns:
-        tuple[int, str, datetime.date, int, int]: Gestational age in weeks, trimester, due date, countdown weeks remaining, countdown days remaining.
+        tuple[int, str, date, int, int]: Gestational age in weeks, trimester, due date, countdown weeks remaining, countdown days remaining.
     """
     # Calculate gestational age in weeks
     gestational_age = calc_gestational_age(last_period_date)
@@ -32,12 +32,12 @@ def calc_pregnancy_info(last_period_date) -> tuple[int, str, datetime.date, int,
     return gestational_age, trimester, due_date, weeks_remaining, days_remaining
 
 
-def calc_gestational_age(last_period_date: datetime.date) -> int:
+def calc_gestational_age(last_period_date: date) -> int:
     """
     Calculate gestational age in weeks by subtracting current date and last menstrual period.
 
     Args:
-        last_period_date (datetime.date): The date of last menstrual period.
+        last_period_date (date): The date of last menstrual period.
 
     Returns:
         int: The gestational age in weeks.
@@ -74,15 +74,15 @@ def calc_trimester(gestational_age: int) -> str:
         return "Third trimester"
 
 
-def calc_due_date(last_period_date: datetime.date) -> datetime.date:
+def calc_due_date(last_period_date: date) -> date:
     """
     Calculate the due date by adding 40 weeks to the date of last menstrual period.
 
     Args:
-        last_period_date (datetime.date): The date of last menstrual period.
+        last_period_date (date): The date of last menstrual period.
 
     Returns:
-        datetime.date: The estimated due date.
+        date: The estimated due date.
     """
 
     # Calculate the due date by adding 40 weeks to the last menstrual period date
@@ -90,12 +90,12 @@ def calc_due_date(last_period_date: datetime.date) -> datetime.date:
     return estimated_due_date
 
 
-def calc_countdown(due_date: datetime.date) -> tuple[int, int]:
+def calc_countdown(due_date: date) -> tuple[int, int]:
     """
     Calculate the countdown from current date until the due date.
 
     Args:
-        due_date (datetime.date): The estimated due date.
+        due_date (date): The estimated due date.
 
     Returns:
         tuple [int, int]: Remaining numbers of weeks and days until due date
