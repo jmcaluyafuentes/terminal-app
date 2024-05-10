@@ -5,8 +5,34 @@ gestational age in weeks, trimester, estimated due date (EDD) and countdown unti
 
 from datetime import datetime, date, timedelta
 
-def calculate_gestational_age(last_period_date: datetime.date) -> int:
 
+def calc_pregnancy_info(last_period_date) -> tuple[int, str, datetime.date, int, int]:
+    """
+    Calculate and display the information about pregnancy such as gestational age
+    in weeks, trimester, estimated due date (EDD) and countdown until EDD.
+
+    Args:
+        last_period_date (datetime.date): The last menstrual period date.
+
+    Returns:
+        tuple[int, str, datetime.date, int, int]: Gestational age in weeks, trimester, due date, countdown weeks remaining, countdown days remaining.
+    """
+    # Calculate gestational age in weeks
+    gestational_age = calc_gestational_age(last_period_date)
+
+    # Calculate trimester based on gestational age
+    trimester = calc_trimester(gestational_age)
+
+    # Calculate estimated due date
+    due_date = calc_due_date(last_period_date)
+
+    # Calculate the countdown from current date until due date
+    weeks_remaining, days_remaining = calc_countdown(due_date)
+
+    return gestational_age, trimester, due_date, weeks_remaining, days_remaining
+
+
+def calc_gestational_age(last_period_date: datetime.date) -> int:
     """
     Calculate gestational age in weeks by subtracting current date and last menstrual period.
 
@@ -27,7 +53,8 @@ def calculate_gestational_age(last_period_date: datetime.date) -> int:
 
     return gestational_age_in_weeks
 
-def calculate_trimester(gestational_age: int) -> str:
+
+def calc_trimester(gestational_age: int) -> str:
     """
     Determine the trimester based on the gestational age.
 
@@ -40,13 +67,14 @@ def calculate_trimester(gestational_age: int) -> str:
 
     # Check what trimester range the gestational age fall
     if gestational_age <= 12:
-        return 'First trimester'
+        return "First trimester"
     elif 13 <= gestational_age <= 26:
-        return 'Second trimester'
+        return "Second trimester"
     else:
-        return 'Third trimester'
+        return "Third trimester"
 
-def calculate_due_date(last_period_date: datetime.date) -> datetime.date:
+
+def calc_due_date(last_period_date: datetime.date) -> datetime.date:
     """
     Calculate the due date by adding 40 weeks to the date of last menstrual period.
 
@@ -61,7 +89,8 @@ def calculate_due_date(last_period_date: datetime.date) -> datetime.date:
     estimated_due_date = last_period_date + timedelta(weeks=40)
     return estimated_due_date
 
-def calculate_countdown(due_date: datetime.date) -> tuple[int, int]:
+
+def calc_countdown(due_date: datetime.date) -> tuple[int, int]:
     """
     Calculate the countdown from current date until the due date.
 

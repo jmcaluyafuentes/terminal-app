@@ -12,12 +12,7 @@ Student/Author: John Fuentes
 from textwrap import dedent
 from datetime import datetime
 from print_guide import guide, guide_user_response
-from pregnancy_calculator import (
-    calculate_gestational_age,
-    calculate_trimester,
-    calculate_due_date,
-    calculate_countdown
-)
+from pregnancy_calculator import calc_pregnancy_info
 from food_safety import check_food_safety
 from travel_safety import check_travel_safety
 from activities_safety import check_activities_safety
@@ -94,29 +89,22 @@ def pregnancy_information() -> None:
     in weeks, trimester, estimated due date (EDD) and countdown until EDD.
     """
     while True:
-        # Prompt user to enter the date of her last menstrual period
+        # Prompt the user to enter the date of her last menstrual period
         last_period_date = get_last_period_date()
 
         # Calculate gestational age in weeks
-        gestational_age = calculate_gestational_age(last_period_date)
-
-        # Calculate trimester based on gestational age
-        trimester = calculate_trimester(gestational_age)
-
-        # Calculate estimated due date
-        due_date = calculate_due_date(last_period_date)
-
-        # Calculate the countdown from current date until due date
-        weeks_remaining, days_remaining = calculate_countdown(due_date)
+        gestational_age, trimester, due_date, weeks_remaining, days_remaining = calc_pregnancy_info(last_period_date)
 
         # Display the guide for instructions and for quitting the app
         guide() # From print_guide module
 
         # Display relevant information about the pregnancy
-        print(f'\nYou are {gestational_age} weeks pregnant.\n')
-        print(f'Trimester: {trimester}')
-        print(f"Estimated Due Date: {due_date.strftime('%d/%m/%Y')}")
-        print(f'Due Date Countdown: {weeks_remaining} week(s) and {days_remaining} day(s)')
+        print(f'''
+            Pregnancy Information:\n
+            You are {gestational_age} weeks pregnant.\n
+            Trimester: {trimester}
+            Estimated Due Date: {due_date.strftime('%d/%m/%Y')}
+            Due Date Countdown: {weeks_remaining} week(s) and {days_remaining} days.''')
 
         # Prompt user what she wants to do next
         if not get_user_next_action(): # From user_next_action module
