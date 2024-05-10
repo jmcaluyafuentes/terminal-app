@@ -158,7 +158,7 @@ def food_safety() -> None:
             if food_handling:
                 print(f'Food Handling: {food_handling}\n')
 
-            # Prompt user what she wants to do next
+            # Prompt the user what she wants to do next
             if not get_user_next_action(): # From user_next_action function
 
                 # Display the guide for instructions and for quitting the app
@@ -173,12 +173,35 @@ def food_safety() -> None:
             # Inform user that the food she entered has no available safety information
             print(f'Sorry, the safety information of "{food}" is not available.\n')
 
-            # Prompt user what she wants to do next
+            # Prompt the user what she wants to do next
             if not get_user_next_action(): # From user next action module
 
                 # Display the guide for instructions and for quitting the app
                 guide() # From print_guide module
                 break # Return to main menu based on user choice
+
+def travel_safety(travel_date, last_period_date):
+
+    while True:
+        # Obtain the travel information from travel_safety module
+        travel_infos = check_travel_safety(travel_date, last_period_date)
+
+        # Display travel safety information with indices from the list
+        for index, travel_info in enumerate(travel_infos, 1):
+            # Display only if travel info is not an empty string
+            if travel_info:
+                print(f'{index}. {travel_info}')
+
+        # Prompt the user what she wants to do next
+        if not get_user_next_action(): # From user_next_action function
+
+            # Display the guide for instructions and for quitting the app
+            guide() # From print_guide module
+
+            break # Return to main menu based on user choice
+
+        # Display the guide for instructions and for quitting the app
+        guide() # From print_guide module
 
 def safety_info() -> None:
     """
@@ -207,23 +230,12 @@ def safety_info() -> None:
             # Check what the user entered
             if choice == '1':
                 food_safety()
-
             elif choice == '2':
                 # Prompt user the date of her last menstrual period
                 last_period_date = get_last_period_date()
-
                 # Prompt user the date of her planned travel
                 travel_date = get_travel_date()
-
-                # Obtain the travel information from travel_safety module
-                travel_infos = check_travel_safety(travel_date, last_period_date)
-
-                # Display travel safety information with indices from the list
-                for index, travel_info in enumerate(travel_infos, 1):
-                    # Display only if travel info is not an empty string
-                    if travel_info:
-                        print(f'{index}. {travel_info}')
-
+                travel_safety(travel_date, last_period_date)
             elif choice == '3':
                 check_activities_safety()
             else:
