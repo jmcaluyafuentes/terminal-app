@@ -11,7 +11,7 @@ def guide() -> None:
     """
     Display the heading in every prompt.
     """
-    print('-' * 110) # print separator line of hyphens
+    print('-' * 95) # print separator line of hyphens
 
     print(dedent('''
     Guide:
@@ -36,7 +36,7 @@ def guide_user_response(response: str) -> bool:
 
         # Display the guide for instructions and for quitting the app
         guide() # From print_guide module
-        
+
         return True
 
     # Check if user wants to exit the app
