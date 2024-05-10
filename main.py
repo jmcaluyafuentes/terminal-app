@@ -93,29 +93,37 @@ def get_user_next_action() -> bool:
     Returns:
         bool: True if user chooses to continue or False if user chooses to return to main menu.
     """
-    while True:
+
+    user_next_action = True
+    while user_next_action:
         # Prompt the user to get her response
-        next_choice = input('\n\nWhat would you like to do next?\n'
+        next_choice = input('What would you like to do next?\n'
                             '1. Continue\n'
-                            '2. Return to main menu\n\n'
+                            '2. Go back one menu up\n\n'
                             'Enter your choice (1 or 2): ')
 
         # Check if user want to view the instructions or exits the app
         instructions = guide_user_response(next_choice)
 
+        user_choice = True
+
         while not instructions:
             # Check what choice the user selected
             if next_choice == '1':
-                return True
+                user_choice = True
+                user_next_action = False
             elif next_choice == '2':
-                return False
+                user_choice = False
+                user_next_action = False
             else:
                 # Display the guide for instructions and for quitting the app
                 guide() # From print_guide module
 
                 # Inform the user that she entered invalid choice
-                print(f'"{next_choice}" is an invalid choice. Please enter 1, 2 or 3.')
-                instructions = True
+                print(f'"{next_choice}" is an invalid choice. Please enter 1 or 2.\n')
+            instructions = True
+
+    return user_choice
 
 # Main functions
 def pregnancy_information() -> None:
@@ -150,7 +158,63 @@ def pregnancy_information() -> None:
 
         # Prompt user what she wants to do next
         if not get_user_next_action():
+            # Display the guide for instructions and for quitting the app
+            guide() # From print_guide module
             break # Return to main menu based on user choice
+
+def food_safety() -> None:
+    """
+    Prompt user what food she wants to know the safety information
+    """
+
+    while True:
+        # Display the guide for instructions and for quitting the app
+        guide() # From print_guide module
+
+        # Prompt the user what food she wants to know for the safety information
+        food = input('Enter a food item: ').lower()
+
+        # Check if user want to view the instructions or exits the app
+        guide_user_response(food)
+
+        # Calls the function check_food_safety in food_safety module
+        food_safety_info, food_precaution, food_handling = check_food_safety(food)
+
+        # Display only if the food entered by the user has available safety information
+        if food_safety_info:
+            # Display the guide for instructions and for quitting the app
+            guide() # From print_guide module
+
+            print(f'\nFood: {food.capitalize()}\n')
+            print(f'Food Safety Information: {food_safety_info}')
+
+            # Display only if the value in food_precaution is not an empty string
+            if food_precaution:
+                print(f'Precaution: {food_precaution}\n')
+
+            # Display only if the value in food_handling is not an empty string
+            if food_handling:
+                print(f'Food Handling: {food_handling}\n')
+
+            # Prompt user what she wants to do next
+            if not get_user_next_action():
+                # Display the guide for instructions and for quitting the app
+                guide() # From print_guide module
+                break # Return to main menu based on user choice
+
+        # Inform the user that the food she entered has no available safety information.
+        else:
+            # Display the guide for instructions and for quitting the app
+            guide() # From print_guide module
+
+            # Inform user that the food she entered has no available safety information
+            print(f'Sorry, the safety information of "{food}" is not available.\n')
+
+            # Prompt user what she wants to do next
+            if not get_user_next_action():
+                # Display the guide for instructions and for quitting the app
+                guide() # From print_guide module
+                break # Return to main menu based on user choice
 
 def safety_info() -> None:
     """
@@ -178,35 +242,7 @@ def safety_info() -> None:
         while not instructions:
             # Check what the user entered
             if choice == '1':
-                # Prompt the user what food she wants to know for the safety information
-                food = input('Enter a food item: ').lower()
-
-                # Check if user want to view the instructions or exits the app
-                guide_user_response(choice)
-
-                # Calls the function check_food_safety in food_safety module
-                food_safety_info, food_precaution, food_handling = check_food_safety(food)
-
-                # Display only if the food entered by the user has available safety information
-                if food_safety_info:
-                    print(f'\nFood: {food.capitalize()}\n')
-                    print(f'Food Safety Information: {food_safety_info}')
-
-                    # Display only if the value in food_precaution is not an empty string
-                    if food_precaution:
-                        print(f'Precaution: {food_precaution}')
-
-                    # Display only if the value in food_handling is not an empty string
-                    if food_handling:
-                        print(f'Food Handling: {food_handling}')
-
-                # Inform the user that the food she entered has no available safety information.
-                else:
-                    # Display the guide for instructions and for quitting the app
-                    guide() # From print_guide module
-
-                    # Inform user that the food she entered has no available safety information
-                    print(f'Sorry, the safety information of "{food}" is not available.\n')
+                food_safety()
 
             elif choice == '2':
                 # Prompt user the date of her last menstrual period
@@ -227,12 +263,15 @@ def safety_info() -> None:
             elif choice == '3':
                 check_activities_safety()
             else:
+                # Display the guide for instructions and for quitting the app
+                guide() # From print_guide module
+
                 # Inform the user that she entered an invalid choice
                 print(dedent(f'''
                 Error: "{choice}" is an invalid choice.\n
-                Please enter 1 for Food Safety, 2 for Travel Safety or 3 for Activities Safety\n
+                Please enter 1 for Food Safety, 2 for Travel Safety or 3 for Activities Safety
                 '''))
-                instructions = True
+            instructions = True
 
 def note_taking():
     pass
@@ -267,17 +306,20 @@ def main() -> None:
             # Check what option the user selected
             if choice == '1':
                 pregnancy_information()
+                guide()
             elif choice == '2':
                 safety_info()
+                guide()
             elif choice == '3':
                 note_taking()
+                guide()
             else:
                 # Display the guide for instructions and for quitting the app
                 guide() # From print_guide module
 
                 # Inform the user if she entered invalid choice
                 print(f'"{choice}" is an invalid choice. Please enter 1, 2 or 3.')
-                instructions = True
+            instructions = True
 
 # Execute main function when the script is run
 if __name__ == "__main__":
