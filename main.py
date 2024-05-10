@@ -262,7 +262,7 @@ def note_taking() -> None:
             3. Go back to Main Menu
             '''))
 
-            # Prompt the user her choice
+        # Prompt the user her choice
         user_choice = input('Enter your choice (1, 2 or 3): ')
 
         # Check if user want to view the instructions or exits the app
