@@ -253,15 +253,17 @@ def note_taking() -> None:
     # Display the guide for instructions and for quitting the app
     display_guide_on_top() # From print_guide module
 
-    while True:
+    note = True
+    while note:
         print(dedent('''
             Select an action:\n
             1. Write and record a note
             2. Read the recorded note
+            3. Go back to Main Menu
             '''))
 
             # Prompt the user her choice
-        user_choice = input('Enter your choice (1 or 2): ')
+        user_choice = input('Enter your choice (1, 2 or 3): ')
 
         # Check if user want to view the instructions or exits the app
         instructions = guide_user_response(user_choice)
@@ -269,9 +271,17 @@ def note_taking() -> None:
         while not instructions:
             # Check what the user selected
             if user_choice == '1':
-                record_personal_notes()
+                # Get user input and record her notes
+                record_personal_notes() # From user_notes module
             elif user_choice == '2':
-                display_personal_notes()
+                # Display user recorded notes
+                display_personal_notes() # From user_notes module
+            elif user_choice == '3':
+                # Display the guide for instructions and for quitting the app
+                display_guide_on_top() # From print_guide module
+                # Go back to main menu
+                note = False
+                break
             else:
                 # Display the guide for instructions and for quitting the app
                 display_guide_on_top() # From print_guide module
