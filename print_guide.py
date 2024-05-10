@@ -7,7 +7,7 @@ or quit the application anywhere in the program.
 import sys
 from textwrap import dedent
 
-def guide() -> None:
+def display_guide_on_top() -> None:
     """
     Display the heading in every prompt.
     """
@@ -35,7 +35,7 @@ def guide_user_response(response: str) -> bool:
         instructions()
 
         # Display the guide for instructions and for quitting the app
-        guide() # From print_guide module
+        display_guide_on_top() # From print_guide module
 
         return True
 

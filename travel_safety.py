@@ -5,7 +5,7 @@ This module is used to check travel safety information in CSV file.
 import csv
 from textwrap import dedent
 from datetime import datetime, date
-from print_guide import guide, guide_user_response
+from print_guide import display_guide_on_top, guide_user_response
 
 def calc_gestational_age_on_travel(travel_date: date, last_period_date: date) -> int:
     """
@@ -95,7 +95,7 @@ def check_travel_safety(travel_date: date, last_period_date: date) -> tuple[str,
                     user_selected_int = int(user_selected)
                 except ValueError:
                     # Display the guide for instructions and for quitting the app
-                    guide() # From print_guide module
+                    display_guide_on_top() # From print_guide module
 
                     print(f'Error: "{user_selected}" is invalid: Please enter from 1 to 9.\n')
                     continue
@@ -132,7 +132,7 @@ def check_travel_safety(travel_date: date, last_period_date: date) -> tuple[str,
                     return None, None, None, None, None
 
                 # Display the guide for instructions and for quitting the app
-                guide() # From print_guide module
+                display_guide_on_top() # From print_guide module
 
                 print(f'Error: "{user_selected}" is invalid. Please enter from 1 to 9.\n')
 

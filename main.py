@@ -11,7 +11,7 @@ Student/Author: John Fuentes
 # Import statements
 from textwrap import dedent
 from datetime import datetime, date
-from print_guide import guide, guide_user_response
+from print_guide import display_guide_on_top, guide_user_response
 from pregnancy_calculator import calc_pregnancy_info
 from food_safety import check_food_safety
 from travel_safety import check_travel_safety
@@ -29,7 +29,7 @@ def get_last_period_date() -> date:
 
     """
     # Display the guide for instructions and for quitting the app
-    guide() # From print_guide module
+    display_guide_on_top() # From print_guide module
 
     while True:
         # Prompt user to enter the date of her last menstrual period
@@ -45,7 +45,7 @@ def get_last_period_date() -> date:
                 return last_period_date
             except ValueError:
                 # Display the guide for instructions and for quitting the app
-                guide() # From print_guide module
+                display_guide_on_top() # From print_guide module
 
                 # Handles error gracefully if user entered invalid date format
                 print(dedent(f'''
@@ -96,7 +96,7 @@ def pregnancy_information() -> None:
         gestational_age, trimester, due_date, weeks_remaining, days_remaining = calc_pregnancy_info(last_period_date)
 
         # Display the guide for instructions and for quitting the app
-        guide() # From print_guide module
+        display_guide_on_top() # From print_guide module
 
         # Display relevant information about the pregnancy
         print(f'''
@@ -110,7 +110,7 @@ def pregnancy_information() -> None:
         if not get_user_next_action(): # From user_next_action module
 
             # Display the guide for instructions and for quitting the app
-            guide() # From print_guide module
+            display_guide_on_top() # From print_guide module
             break # Return to main menu based on user choice
 
 def food_safety() -> None:
@@ -120,7 +120,7 @@ def food_safety() -> None:
 
     while True:
         # Display the guide for instructions and for quitting the app
-        guide() # From print_guide module
+        display_guide_on_top() # From print_guide module
 
         # Prompt the user what food she wants to know for the safety information
         food = input('Enter a food item: ').lower()
@@ -134,7 +134,7 @@ def food_safety() -> None:
         # Display only if the food entered by the user has available safety information
         if food_safety_info:
             # Display the guide for instructions and for quitting the app
-            guide() # From print_guide module
+            display_guide_on_top() # From print_guide module
 
             print(f'\nFood: {food.capitalize()}\n')
             print(f'Food Safety Information: {food_safety_info}')
@@ -151,13 +151,13 @@ def food_safety() -> None:
             if not get_user_next_action(): # From user_next_action function
 
                 # Display the guide for instructions and for quitting the app
-                guide() # From print_guide module
+                display_guide_on_top() # From print_guide module
                 break # Return to main menu based on user choice
 
         # Inform the user that the food she entered has no available safety information.
         else:
             # Display the guide for instructions and for quitting the app
-            guide() # From print_guide module
+            display_guide_on_top() # From print_guide module
 
             # Inform user that the food she entered has no available safety information
             print(f'Sorry, the safety information of "{food}" is not available.\n')
@@ -166,7 +166,7 @@ def food_safety() -> None:
             if not get_user_next_action(): # From user next action module
 
                 # Display the guide for instructions and for quitting the app
-                guide() # From print_guide module
+                display_guide_on_top() # From print_guide module
                 break # Return to main menu based on user choice
 
 def travel_safety(travel_date: date, last_period_date: date) -> None:
@@ -191,19 +191,19 @@ def travel_safety(travel_date: date, last_period_date: date) -> None:
         if not get_user_next_action(): # From user_next_action function
 
             # Display the guide for instructions and for quitting the app
-            guide() # From print_guide module
+            display_guide_on_top() # From print_guide module
 
             break # Return to main menu based on user choice
 
         # Display the guide for instructions and for quitting the app
-        guide() # From print_guide module
+        display_guide_on_top() # From print_guide module
 
 def safety_info() -> None:
     """
     Prompt user to select from the three topics related to safety in pregnancy.
     """
     # Display the guide for instructions and for quitting the app
-    guide() # From print_guide module
+    display_guide_on_top() # From print_guide module
 
     while True:
         # Give the user options for the topics related to safety
@@ -237,7 +237,7 @@ def safety_info() -> None:
                 check_activities_safety() # From activities_safety module
             else:
                 # Display the guide for instructions and for quitting the app
-                guide() # From print_guide module
+                display_guide_on_top() # From print_guide module
 
                 # Inform the user that she entered an invalid choice
                 print(dedent(f'''
@@ -251,7 +251,7 @@ def note_taking() -> None:
     This function allows the user to record her personal notes with date and time stamps.
     """
     # Display the guide for instructions and for quitting the app
-    guide() # From print_guide module
+    display_guide_on_top() # From print_guide module
 
     while True:
         print(dedent('''
@@ -274,7 +274,7 @@ def note_taking() -> None:
                 display_personal_notes()
             else:
                 # Display the guide for instructions and for quitting the app
-                guide() # From print_guide module
+                display_guide_on_top() # From print_guide module
 
                 print(dedent(f'''
                     Error: "{user_choice}" is an invalid choice.
@@ -291,7 +291,7 @@ def main() -> None:
     print('\nWelcome to Pregnancy Tracker App!\n')
 
     # Display the guide for instructions and for quitting the app
-    guide() # From print_guide module
+    display_guide_on_top() # From print_guide module
 
     while True:
         # Give user options based on the features of this app
@@ -313,18 +313,18 @@ def main() -> None:
             if choice == '1':
                 # Display pregnancy information based on user input
                 pregnancy_information()
-                guide() # From print_guide module
+                display_guide_on_top() # From print_guide module
             elif choice == '2':
                 # Display safety information based on user input
                 safety_info()
-                guide() # From print_guide module
+                display_guide_on_top() # From print_guide module
             elif choice == '3':
                 # Record user's personal notes
                 note_taking()
-                guide() # From print_guide module
+                display_guide_on_top() # From print_guide module
             else:
                 # Display the guide for instructions and for quitting the app
-                guide() # From print_guide module
+                display_guide_on_top() # From print_guide module
 
                 # Inform the user if she entered invalid choice
                 print(f'"{choice}" is an invalid choice. Please enter 1, 2 or 3.')

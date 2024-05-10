@@ -3,7 +3,7 @@ This module will accept user input and record personal notes with date and time 
 """
 
 from datetime import datetime
-from print_guide import guide, guide_user_response
+from print_guide import display_guide_on_top, guide_user_response
 from user_next_action import get_user_next_action
 
 def record_personal_notes() -> None:
@@ -14,7 +14,7 @@ def record_personal_notes() -> None:
     while record:
         try:
             # Display the guide for instructions and for quitting the app
-            guide() # From print_guide module
+            display_guide_on_top() # From print_guide module
 
             # Get user input for the note
             note = input('\nEnter your note: ')
@@ -38,14 +38,15 @@ def record_personal_notes() -> None:
         except Exception as e:
             print(f'An error occurred: {e}')
 
-        guide() # From print_guide module
+        # Display the guide for instructions and for quitting the app
+        display_guide_on_top() # From print_guide module
 
 def display_personal_notes() -> None:
     """
     Display all recorded personal notes with timestamp from the note file.
     """
     # Display the guide for instructions and for quitting the app
-    guide() # From print_guide module
+    display_guide_on_top() # From print_guide module
 
     display = True
     while display:
@@ -74,5 +75,5 @@ def display_personal_notes() -> None:
         except Exception as e:
             print(f'An error occurred: {e}')
 
-        guide() # From print_guide module
-
+        # Display the guide for instructions and for quitting the app
+        display_guide_on_top() # From print_guide module

@@ -3,7 +3,7 @@ This module will give information about safe activities for pregnant women.
 """
 
 import csv
-from print_guide import guide, guide_user_response
+from print_guide import display_guide_on_top, guide_user_response
 
 def check_activities_safety() -> None:
     """
@@ -11,7 +11,7 @@ def check_activities_safety() -> None:
     """
 
     # Display the guide for instructions and for quitting the app
-    guide() # From print_guide module
+    display_guide_on_top() # From print_guide module
 
     activities_safety = True
 
@@ -42,7 +42,7 @@ def check_activities_safety() -> None:
             topic = topics[int(user_choice) - 1]
         else:
             # Display the guide for instructions and for quitting the app
-            guide() # From print_guide module
+            display_guide_on_top() # From print_guide module
 
             # Display the error message for invalid user input
             print(f'Error: "{user_choice}" is an invalid choice.')
@@ -93,7 +93,7 @@ def check_activities_safety() -> None:
 
             activity_loop = False
             activities_safety = get_user_next_action()
-            guide() # From print_guide module
+            display_guide_on_top() # From print_guide module
 
 def get_user_next_action() -> bool:
     """
@@ -120,7 +120,7 @@ def get_user_next_action() -> bool:
             return False
         else:
             # Display the guide for instructions and for quitting the app
-            guide() # From print_guide module
+            display_guide_on_top() # From print_guide module
 
             # Inform the user that she entered invalid choice
             print(f'ERROR: "{next_choice}" is invalid choice. Please enter 1 or 2.')

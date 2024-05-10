@@ -3,7 +3,7 @@ This module contains the calculations on the information about pregnancy such as
 gestational age in weeks, trimester, estimated due date (EDD) and countdown until EDD.
 """
 
-from datetime import datetime, date, timedelta
+from datetime import date, timedelta
 
 
 def calc_pregnancy_info(last_period_date: date) -> tuple[int, str, date, int, int]:
@@ -30,7 +30,6 @@ def calc_pregnancy_info(last_period_date: date) -> tuple[int, str, date, int, in
     weeks_remaining, days_remaining = calc_countdown(due_date)
 
     return gestational_age, trimester, due_date, weeks_remaining, days_remaining
-
 
 def calc_gestational_age(last_period_date: date) -> int:
     """
