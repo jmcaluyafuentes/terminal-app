@@ -15,9 +15,9 @@ def guide() -> None:
 
     print(dedent('''
     Guide:
-    1. When selecting an option, type the option number and hit enter.
-    2. To display the instructions, type 'INSTRUCTIONS' and hit enter.
-    3. To quit the pregnancy tracker app, type 'QUIT' and hit enter.
+    - Type 'INSTRUCTIONS' to display the instructions.
+    - Type 'QUIT' to exit the Pregnancy Tracker app.
+    - Hit enter after selecting an option or typing a command.
     '''))
 
 def guide_user_response(response: str) -> bool:
@@ -33,6 +33,10 @@ def guide_user_response(response: str) -> bool:
     # Check if user wants to view the instructions
     if response.lower() == 'instructions':
         instructions()
+
+        # Display the guide for instructions and for quitting the app
+        guide() # From print_guide module
+        
         return True
 
     # Check if user wants to exit the app
