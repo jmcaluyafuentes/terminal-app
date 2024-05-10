@@ -22,6 +22,7 @@ from food_safety import check_food_safety
 from travel_safety import check_travel_safety
 from activities_safety import check_activities_safety
 from user_next_action import get_user_next_action
+from user_notes import record_personal_notes, display_personal_notes
 
 # Helper functions
 def get_last_period_date() -> datetime.date:
@@ -257,8 +258,41 @@ def safety_info() -> None:
                 '''))
             instructions = True
 
-def note_taking():
-    pass
+def note_taking() -> None:
+    """
+    This function allows the user to record her personal notes with date and time stamps.
+    """
+    # Display the guide for instructions and for quitting the app
+    guide() # From print_guide module
+
+    while True:
+        print(dedent('''
+            Select an action:\n
+            1. Write and record a note
+            2. Read the recorded note
+            '''))
+
+            # Prompt the user her choice
+        user_choice = input('Enter your choice (1 or 2): ')
+
+        # Check if user want to view the instructions or exits the app
+        instructions = guide_user_response(user_choice)
+
+        while not instructions:
+            # Check what the user selected
+            if user_choice == '1':
+                record_personal_notes()
+            elif user_choice == '2':
+                display_personal_notes()
+            else:
+                # Display the guide for instructions and for quitting the app
+                guide() # From print_guide module
+
+                print(dedent(f'''
+                    Error: "{user_choice}" is an invalid choice.
+                    Please enter 1 to write a note or 2 to read a note.
+                    '''))
+            instructions = True
 
 # Execution entry point
 def main() -> None:
@@ -289,14 +323,17 @@ def main() -> None:
         while not instructions:
             # Check what option the user selected
             if choice == '1':
+                # Display pregnancy information based on user input
                 pregnancy_information()
-                guide()
+                guide() # From print_guide module
             elif choice == '2':
+                # Display safety information based on user input
                 safety_info()
-                guide()
+                guide() # From print_guide module
             elif choice == '3':
+                # Record user's personal notes
                 note_taking()
-                guide()
+                guide() # From print_guide module
             else:
                 # Display the guide for instructions and for quitting the app
                 guide() # From print_guide module
