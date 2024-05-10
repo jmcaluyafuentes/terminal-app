@@ -7,7 +7,7 @@ from textwrap import dedent
 from datetime import datetime, date
 from print_guide import guide, guide_user_response
 
-def calculate_gestational_age_on_travel(travel_date: datetime.date, last_period_date:datetime.date) -> int:
+def calc_gestational_age_on_travel(travel_date: datetime.date, last_period_date:datetime.date) -> int:
     """
     Calculate the number of weeks pregnant on the planned travel date.
 
@@ -38,7 +38,7 @@ def calculate_gestational_age_on_travel(travel_date: datetime.date, last_period_
 
 def check_travel_safety(travel_date: datetime.date, last_period_date: datetime.date) -> tuple[str, str, str, str, str]:
     """
-    Check the travel information based on the gestational age during the planned travel date.
+    Display the travel information based on the gestational age during the planned travel date.
 
     Args:
         travel date (datetime.date): Planned travel date.
@@ -50,7 +50,7 @@ def check_travel_safety(travel_date: datetime.date, last_period_date: datetime.d
 
     try:
         # Calculate the gestational age (in weeks) on the planned travel date
-        weeks_pregnant_on_travel = calculate_gestational_age_on_travel(travel_date, last_period_date)
+        weeks_pregnant_on_travel = calc_gestational_age_on_travel(travel_date, last_period_date)
 
         # Display to user the gestational age (in weeks) on the planned travel date
         print(dedent(f'''

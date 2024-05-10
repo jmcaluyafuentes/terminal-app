@@ -126,7 +126,7 @@ def pregnancy_information() -> None:
 
 def food_safety() -> None:
     """
-    Prompt user what food she wants to know the safety information
+    Prompt the user what food she wants to know on the safety information
     """
 
     while True:
@@ -180,8 +180,14 @@ def food_safety() -> None:
                 guide() # From print_guide module
                 break # Return to main menu based on user choice
 
-def travel_safety(travel_date, last_period_date):
+def travel_safety(travel_date: datetime.date, last_period_date: datetime.date) -> None:
+    """
+    Display the travel information based on the gestational age during the planned travel date.
 
+    Args:
+        travel_date (datetime.date): The planned travel date.
+        last_period_date (datetime.date): The date of last menstrual period.
+    """
     while True:
         # Obtain the travel information from travel_safety module
         travel_infos = check_travel_safety(travel_date, last_period_date)
@@ -207,7 +213,6 @@ def safety_info() -> None:
     """
     Prompt user to select from the three topics related to safety in pregnancy.
     """
-
     # Display the guide for instructions and for quitting the app
     guide() # From print_guide module
 
@@ -229,15 +234,18 @@ def safety_info() -> None:
         while not instructions:
             # Check what the user entered
             if choice == '1':
+                # Display the food safety information based on user input
                 food_safety()
             elif choice == '2':
                 # Prompt user the date of her last menstrual period
                 last_period_date = get_last_period_date()
                 # Prompt user the date of her planned travel
                 travel_date = get_travel_date()
+                # Display the relevant travel safety information
                 travel_safety(travel_date, last_period_date)
             elif choice == '3':
-                check_activities_safety()
+                # Display the relevant activities safety information
+                check_activities_safety() # From activities_safety module
             else:
                 # Display the guide for instructions and for quitting the app
                 guide() # From print_guide module
