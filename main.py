@@ -145,24 +145,17 @@ def food_safety() -> None:
             if food_handling:
                 print(f'Food Handling: {food_handling}\n')
 
-            # Prompt the user what she wants to do next
-            if not get_user_next_action(): # From user_next_action function
-
-                # Display the guide for instructions and for quitting the app
-                display_guide_on_top() # From print_guide module
-                break # Return to main menu based on user choice
-
         # Inform the user that the food she entered has no available safety information.
         else:
             # Inform user that the food she entered has no available safety information
             print(f'Sorry, the safety information of "{user_input}" is not available.\n')
 
-            # Prompt the user what she wants to do next
-            if not get_user_next_action(): # From user next action module
+        # Prompt the user what she wants to do next
+        if not get_user_next_action(): # From user next action module
 
-                # Display the guide for instructions and for quitting the app
-                display_guide_on_top() # From print_guide module
-                break # Return to main menu based on user choice
+            # Display the guide for instructions and for quitting the app
+            display_guide_on_top() # From print_guide module
+            break # Return to Safety Information Menu
 
 def travel_safety(travel_date: date, last_period_date: date) -> None:
     """
