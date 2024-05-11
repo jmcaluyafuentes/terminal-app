@@ -213,7 +213,7 @@ def safety_info() -> None:
         '''))
 
         # Prompt the user her choice
-        user_choice = input('Enter your choice (1, 2 or 3): ')
+        user_choice = input('Enter your choice (1, 2 or 3) or type "MAIN" to return to main menu: ')
 
         # Check if user want to view the instructions or exits the app
         instructions = guide_user_response(user_choice)
@@ -233,6 +233,9 @@ def safety_info() -> None:
             elif user_choice == '3':
                 # Display the relevant activities safety information
                 check_activities_safety() # From activities_safety module
+            elif user_choice.lower() == 'main':
+                # Go back to main menu
+                return None
             else:
                 # Display the guide for instructions and for quitting the app
                 display_guide_on_top() # From print_guide module
@@ -240,7 +243,8 @@ def safety_info() -> None:
                 # Inform the user that she entered an invalid choice
                 print(Fore.RED + emoji.emojize(dedent(f'''
                 :cross_mark: ERROR: "{user_choice}" is an invalid choice.
-                Please enter 1 for Food Safety, 2 for Travel Safety or 3 for Activities Safety
+                Please enter 1 for Food Safety, 2 for Travel Safety or 3 for Activities Safety.
+                Or type "MAIN" to return to main menu.
                 ''')) + Style.RESET_ALL)
             instructions = True
 

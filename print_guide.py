@@ -101,7 +101,7 @@ def instructions() -> None:
             return None
         if user_input.lower() == 'instructions':
             continue
-        elif user_input.lower() == 'quit':
+        if user_input.lower() == 'quit':
             sys.exit()
         else:
             print(Fore.RED + emoji.emojize(f':cross_mark: ERROR: "{user_input}" is an invalid choice.') + Style.RESET_ALL)
