@@ -55,7 +55,7 @@ def instructions() -> None:
         print('-' * 110) # print separator line of hyphens as aesthetics only
 
         # Display the instructions
-        print('''
+        print(Fore.CYAN + '''
         Instructions
 
         1. The Pregnancy Tracker App has three main features as follows.
@@ -83,7 +83,7 @@ def instructions() -> None:
         4. Type 'INSTRUCTIONS' to view these instructions at any given time.
         5. Type 'QUIT' to exit the Pregnancy Tracker app at any given time.
         6. Hit ENTER after you type in the prompt (e.g., option number, INSTRUCTIONS, QUIT)
-        ''')
+        ''' + Style.RESET_ALL)
 
         # User can exit the instructions by entering 'CLOSE'
         user_input = input('Enter "CLOSE" to exit these instructions.\n')
