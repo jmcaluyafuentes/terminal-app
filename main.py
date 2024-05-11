@@ -37,7 +37,6 @@ def get_last_period_date() -> date:
     while True:
         # Prompt user to enter the date of her last menstrual period
         user_input = input('\nEnter the date of your last menstrual period (DD/MM/YYYY): ')
-
         # Check if user want to view the instructions or exits the app
         instructions = guide_user_response(user_input)
 
@@ -45,17 +44,27 @@ def get_last_period_date() -> date:
             try:
                 # Convert user input string into datetime.date object in DD/MM/YYYY format
                 last_period_date = datetime.strptime(user_input, '%d/%m/%Y').date()
-                return last_period_date
+                # Get current date
+                current_date = date.today()
+                # Check if last_period_date is before the current date
+                if last_period_date < current_date:
+                    return last_period_date
+                else:
+                    # Display the guide for instructions and for quitting the app
+                    display_guide_on_top() # From print_guide module
+                    # Display error message for invalid input date
+                    print(Fore.RED + emoji.emojize(dedent('''
+                    :cross_mark: ERROR: The last menstrual period date must be before the current date.
+                    ''')) + Style.RESET_ALL)
+                    instructions = True
             except ValueError:
                 # Display the guide for instructions and for quitting the app
                 display_guide_on_top() # From print_guide module
-
                 # Handles error gracefully if user entered invalid date format
                 print(Fore.RED + emoji.emojize(dedent(f'''
                 :cross_mark: ERROR: "{user_input}" is an invalid format.
-                Please enter the date in DD/MM/YYYY.\n'''
+                Please enter the date in DD/MM/YYYY.'''
                 )) + Style.RESET_ALL)
-
                 instructions = True
 
 def get_travel_date() -> date:
@@ -69,7 +78,6 @@ def get_travel_date() -> date:
     while True:
         # Prompt the user the date of her planned travel date
         user_input = input('\nEnter the date of your planned travel (DD/MM/YYYY): ')
-
         # Check if user want to view the instructions or exits the app
         instructions = guide_user_response(user_input)
 
@@ -77,8 +85,21 @@ def get_travel_date() -> date:
             try:
                 # Convert user input string into datetime.date object in DD/MM/YYYY format
                 travel_date = datetime.strptime(user_input, '%d/%m/%Y').date()
-                return travel_date
+                current_date = date.today()
+                # Check if last_period_date is before the current date
+                if travel_date > current_date:
+                    return travel_date
+                else:
+                    # Display the guide for instructions and for quitting the app
+                    display_guide_on_top() # From print_guide module
+                    # Display error message for invalid input date
+                    print(Fore.RED + emoji.emojize(dedent('''
+                    :cross_mark: ERROR: The travel date must be after the current date.
+                    ''')) + Style.RESET_ALL)
+                    instructions = True
             except ValueError:
+                # Display the guide for instructions and for quitting the app
+                display_guide_on_top() # From print_guide module
                 # Handles error gracefully if user entered invalid date format
                 print(Fore.RED + emoji.emojize(dedent(f'''
                 :cross_mark: ERROR: "{user_input}" is an invalid format. 
