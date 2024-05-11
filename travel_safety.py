@@ -104,7 +104,7 @@ def check_travel_safety(travel_date: date, last_period_date: date) -> tuple[str,
                     _, question_item = selected_question.split(': ', 1) # Split at the first ': '
 
                     # Print the actual question as heading
-                    print(f'\n{question_item}')
+                    print(f'\nYour selected question: {question_item}')
 
                     # Open the file food_safety_list.csv in read mode in context manager
                     with open('travel_safety_info.csv', encoding="utf-8-sig") as f:

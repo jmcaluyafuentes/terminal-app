@@ -4,6 +4,7 @@ This module will give information about safe activities for pregnant women.
 
 import csv
 from print_guide import display_guide_on_top, guide_user_response
+from user_next_action import get_user_next_action
 
 def check_activities_safety() -> None:
     """
@@ -86,35 +87,9 @@ def check_activities_safety() -> None:
                 break
 
             activity_loop = False
-            activities_safety = get_user_next_action()
-            display_guide_on_top() # From print_guide module
 
-def get_user_next_action() -> bool:
-    """
-    Prompt the user for the next action whether to continue in current sub menu, 
-    return to main menu or exit.
+            # Ask the user if what she wants to do next
+            activities_safety = get_user_next_action() # From user_next_action module
 
-    Returns:
-        bool: True if user chooses to continue or False if user chooses to return to main menu.
-    """
-    while True:
-        # Prompt the user to get her response
-        user_choice = input('\n\nWhat would you like to do next?\n'
-                            '1. Continue\n'
-                            '2. Return to Safety Information Menu\n\n'
-                            'Enter your choice (1 or 2): ')
-
-        # Check if user want to view the instructions or exits the app
-        guide_user_response(user_choice)
-
-        # Check what choice the user selected
-        if user_choice == '1':
-            return True
-        elif user_choice == '2':
-            return False
-        else:
             # Display the guide for instructions and for quitting the app
             display_guide_on_top() # From print_guide module
-
-            # Inform the user that she entered invalid choice
-            print(f'ERROR: "{user_choice}" is invalid choice. Please enter 1 or 2.')
