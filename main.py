@@ -119,7 +119,8 @@ def food_safety() -> None:
     Prompt the user what food she wants to know on the safety information
     """
 
-    while True:
+    food_safety_loop = True
+    while food_safety_loop:
         # Display the guide for instructions and for quitting the app
         display_guide_on_top() # From print_guide module
 
@@ -127,35 +128,40 @@ def food_safety() -> None:
         user_input = input('Enter a food item: ').lower()
 
         # Check if user want to view the instructions or exits the app
-        guide_user_response(user_input)
+        instructions = guide_user_response(user_input)
 
-        # Calls the function check_food_safety in food_safety module
-        food_safety_info, food_precaution, food_handling = check_food_safety(user_input)
+        while not instructions:
 
-        # Display only if the food entered by the user has available safety information
-        if food_safety_info:
-            print(f'\nFood: {user_input.capitalize()}\n')
-            print(f'Food Safety Information: {food_safety_info}')
+            # Calls the function check_food_safety in food_safety module
+            food_safety_info, food_precaution, food_handling = check_food_safety(user_input)
 
-            # Display only if the value in food_precaution is not an empty string
-            if food_precaution:
-                print(f'Precaution: {food_precaution}\n')
+            # Display only if the food entered by the user has available safety information
+            if food_safety_info:
+                print(f'\nFood: {user_input.capitalize()}\n')
+                print(f'Food Safety Information: {food_safety_info}')
 
-            # Display only if the value in food_handling is not an empty string
-            if food_handling:
-                print(f'Food Handling: {food_handling}\n')
+                # Display only if the value in food_precaution is not an empty string
+                if food_precaution:
+                    print(f'Precaution: {food_precaution}\n')
 
-        # Inform the user that the food she entered has no available safety information.
-        else:
-            # Inform user that the food she entered has no available safety information
-            print(f'Sorry, the safety information of "{user_input}" is not available.\n')
+                # Display only if the value in food_handling is not an empty string
+                if food_handling:
+                    print(f'Food Handling: {food_handling}\n')
 
-        # Prompt the user what she wants to do next
-        if not get_user_next_action(): # From user next action module
+            # Inform the user that the food she entered has no available safety information.
+            else:
+                # Inform user that the food she entered has no available safety information
+                print(f'Sorry, the safety information of "{user_input}" is not available.\n')
 
-            # Display the guide for instructions and for quitting the app
-            display_guide_on_top() # From print_guide module
-            break # Return to Safety Information Menu
+            # Prompt the user what she wants to do next
+            if not get_user_next_action(): # From user next action module
+
+                # Display the guide for instructions and for quitting the app
+                display_guide_on_top() # From print_guide module
+                food_safety_loop = False
+                break # Return to Safety Information Menu
+
+            instructions = True
 
 def travel_safety(travel_date: date, last_period_date: date) -> None:
     """
