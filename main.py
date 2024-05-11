@@ -50,7 +50,7 @@ def get_last_period_date() -> date:
                 display_guide_on_top() # From print_guide module
 
                 # Handles error gracefully if user entered invalid date format
-                print(dedent(Fore.RED + f'''
+                print(Fore.RED + dedent(f'''
                 Error: "{user_input}" is an invalid format.
                 Please enter the date in DD/MM/YYYY.\n'''
                 ) + Style.RESET_ALL)
@@ -78,7 +78,7 @@ def get_travel_date() -> date:
                 return travel_date
             except ValueError:
                 # Handles error gracefully if user entered invalid date format
-                print(dedent(Fore.RED + f'''
+                print(Fore.RED + dedent(f'''
                 Error: "{user_input}" is an invalid format. 
                 Please enter the date in DD/MM/YYYY.\n
                 ''') + Style.RESET_ALL)
@@ -236,7 +236,7 @@ def safety_info() -> None:
 
                 # Inform the user that she entered an invalid choice
                 print(Fore.RED + dedent(f'''
-                Error: "{user_choice}" is an invalid choice.\n
+                Error: "{user_choice}" is an invalid choice.
                 Please enter 1 for Food Safety, 2 for Travel Safety or 3 for Activities Safety
                 ''') + Style.RESET_ALL)
             instructions = True
@@ -281,7 +281,7 @@ def note_taking() -> None:
                 # Display the guide for instructions and for quitting the app
                 display_guide_on_top() # From print_guide module
 
-                print(dedent(Fore.RED + f'''
+                print(Fore.RED + dedent(f'''
                     Error: "{user_choice}" is an invalid choice.
                     Please enter 1 to write a note or 2 to read a note.
                     ''') + Style.RESET_ALL)
@@ -293,10 +293,7 @@ def main() -> None:
     Main function that allows the user to select from the features of pregnancy tracker app.
     """
     try:
-        print('-' * 95) # print separator line of hyphens
-        print(Fore.GREEN + Style.BRIGHT + '\nWelcome to Pregnancy Tracker App!\n' + Style.RESET_ALL)
-
-        # Display the guide for instructions and for quitting the app
+        # Display the title and guide for the instructions and for quitting the app
         display_guide_on_top() # From print_guide module
 
         while True:

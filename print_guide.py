@@ -1,5 +1,5 @@
 """
-This module will print the heading in every prompt so that
+This module will print the heading with title in every prompt so that
 the user will have an option to view the instructions
 or quit the application anywhere in the program.
 """
@@ -12,6 +12,13 @@ def display_guide_on_top() -> None:
     """
     Display the heading in every prompt.
     """
+    # Print new lines to have an illusion that clears the previous outputs
+    print('\n' * 200)
+    # Print separator line of hyphens
+    print('-' * 95) # print separator line of hyphens
+    # Print the Pregnancy Tracker app title
+    print(Fore.GREEN + Style.BRIGHT + '\nPregnancy Tracker App\n' + Style.RESET_ALL)
+    # Print separator line of hyphens
     print('-' * 95) # print separator line of hyphens
 
     print(Fore.CYAN + dedent('''

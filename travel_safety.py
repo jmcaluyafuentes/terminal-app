@@ -78,7 +78,7 @@ def check_travel_safety(travel_date: date, last_period_date: date) -> tuple[str,
 
         while True:
             # Give the user the list of questions as a guide
-            print(Fore.YELLOW + questions_list + Style.RESET_ALL)
+            print(Fore.MAGENTA + questions_list + Style.RESET_ALL)
 
             # Prompt the user what question she would like an answer about the travel information
             user_choice = input('Please enter the number of your choice: ')
@@ -105,7 +105,7 @@ def check_travel_safety(travel_date: date, last_period_date: date) -> tuple[str,
                     _, question_item = selected_question.split(': ', 1) # Split at the first ': '
 
                     # Print the actual question as heading
-                    print(f'\nYour selected question: {question_item}')
+                    print(Fore.MAGENTA + f'\nYour selected question: {question_item}' + Style.RESET_ALL)
 
                     # Open the file food_safety_list.csv in read mode in context manager
                     with open('travel_safety_info.csv', encoding="utf-8-sig") as f:
