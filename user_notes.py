@@ -18,10 +18,10 @@ def record_personal_notes() -> None:
             display_guide_on_top() # From print_guide module
 
             # Get user input for the note
-            note = input('\nEnter your note: ')
+            user_note = input('\nEnter your note: ')
 
             # Check if user want to view the instructions or exits the app
-            instructions = guide_user_response(note)
+            instructions = guide_user_response(user_note)
 
             if not instructions:
                 # Generate a timestamp in DD/MM/YYYY format
@@ -30,7 +30,7 @@ def record_personal_notes() -> None:
                 # Open the notes file in append mode
                 with open('personal_notes.txt', 'a', encoding="utf-8-sig") as f:
                     # Write the note to the file with timestamp
-                    f.write(f'{timestamp}: {note}\n')
+                    f.write(f'{timestamp}: {user_note}\n')
 
                 print('Remarks: Note recorded successfully.')
 

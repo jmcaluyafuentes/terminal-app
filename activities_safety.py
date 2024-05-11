@@ -105,22 +105,22 @@ def get_user_next_action() -> bool:
     """
     while True:
         # Prompt the user to get her response
-        next_choice = input('\n\nWhat would you like to do next?\n'
+        user_choice = input('\n\nWhat would you like to do next?\n'
                             '1. Continue\n'
-                            '2. Return to Safety main menu\n\n'
+                            '2. Return to Safety Information Menu\n\n'
                             'Enter your choice (1 or 2): ')
 
         # Check if user want to view the instructions or exits the app
-        guide_user_response(next_choice)
+        guide_user_response(user_choice)
 
         # Check what choice the user selected
-        if next_choice == '1':
+        if user_choice == '1':
             return True
-        elif next_choice == '2':
+        elif user_choice == '2':
             return False
         else:
             # Display the guide for instructions and for quitting the app
             display_guide_on_top() # From print_guide module
 
             # Inform the user that she entered invalid choice
-            print(f'ERROR: "{next_choice}" is invalid choice. Please enter 1 or 2.')
+            print(f'ERROR: "{user_choice}" is invalid choice. Please enter 1 or 2.')

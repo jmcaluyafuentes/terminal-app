@@ -34,15 +34,15 @@ def get_last_period_date() -> date:
 
     while True:
         # Prompt user to enter the date of her last menstrual period
-        user_input_date = input('\nEnter the date of your last menstrual period (DD/MM/YYYY): ')
+        user_input = input('\nEnter the date of your last menstrual period (DD/MM/YYYY): ')
 
         # Check if user want to view the instructions or exits the app
-        instructions = guide_user_response(user_input_date)
+        instructions = guide_user_response(user_input)
 
         while not instructions:
             try:
                 # Convert user input string into datetime.date object in DD/MM/YYYY format
-                last_period_date = datetime.strptime(user_input_date, '%d/%m/%Y').date()
+                last_period_date = datetime.strptime(user_input, '%d/%m/%Y').date()
                 return last_period_date
             except ValueError:
                 # Display the guide for instructions and for quitting the app
@@ -50,7 +50,7 @@ def get_last_period_date() -> date:
 
                 # Handles error gracefully if user entered invalid date format
                 print(dedent(f'''
-                Error: "{user_input_date}" is an invalid format.
+                Error: "{user_input}" is an invalid format.
                 Please enter the date in DD/MM/YYYY.\n'''
                 ))
                 instructions = True
@@ -65,20 +65,20 @@ def get_travel_date() -> date:
 
     while True:
         # Prompt the user the date of her planned travel date
-        user_input_date = input('\nEnter the date of your planned travel (DD/MM/YYYY): ')
+        user_input = input('\nEnter the date of your planned travel (DD/MM/YYYY): ')
 
         # Check if user want to view the instructions or exits the app
-        instructions = guide_user_response(user_input_date)
+        instructions = guide_user_response(user_input)
 
         while not instructions:
             try:
                 # Convert user input string into datetime.date object in DD/MM/YYYY format
-                travel_date = datetime.strptime(user_input_date, '%d/%m/%Y').date()
+                travel_date = datetime.strptime(user_input, '%d/%m/%Y').date()
                 return travel_date
             except ValueError:
                 # Handles error gracefully if user entered invalid date format
                 print(dedent(f'''
-                Error: "{user_input_date}" is an invalid format. 
+                Error: "{user_input}" is an invalid format. 
                 Please enter the date in DD/MM/YYYY.\n
                 '''))
                 instructions = True
@@ -124,20 +124,20 @@ def food_safety() -> None:
         display_guide_on_top() # From print_guide module
 
         # Prompt the user what food she wants to know for the safety information
-        food = input('Enter a food item: ').lower()
+        user_input = input('Enter a food item: ').lower()
 
         # Check if user want to view the instructions or exits the app
-        guide_user_response(food)
+        guide_user_response(user_input)
 
         # Calls the function check_food_safety in food_safety module
-        food_safety_info, food_precaution, food_handling = check_food_safety(food)
+        food_safety_info, food_precaution, food_handling = check_food_safety(user_input)
 
         # Display only if the food entered by the user has available safety information
         if food_safety_info:
             # Display the guide for instructions and for quitting the app
             display_guide_on_top() # From print_guide module
 
-            print(f'\nFood: {food.capitalize()}\n')
+            print(f'\nFood: {user_input.capitalize()}\n')
             print(f'Food Safety Information: {food_safety_info}')
 
             # Display only if the value in food_precaution is not an empty string
@@ -161,7 +161,7 @@ def food_safety() -> None:
             display_guide_on_top() # From print_guide module
 
             # Inform user that the food she entered has no available safety information
-            print(f'Sorry, the safety information of "{food}" is not available.\n')
+            print(f'Sorry, the safety information of "{user_input}" is not available.\n')
 
             # Prompt the user what she wants to do next
             if not get_user_next_action(): # From user next action module
@@ -216,24 +216,24 @@ def safety_info() -> None:
         '''))
 
         # Prompt the user her choice
-        choice = input('Enter your choice (1, 2 or 3): ')
+        user_choice = input('Enter your choice (1, 2 or 3): ')
 
         # Check if user want to view the instructions or exits the app
-        instructions = guide_user_response(choice)
+        instructions = guide_user_response(user_choice)
 
         while not instructions:
             # Check what the user entered
-            if choice == '1':
+            if user_choice == '1':
                 # Display the food safety information based on user input
                 food_safety()
-            elif choice == '2':
+            elif user_choice == '2':
                 # Prompt user the date of her last menstrual period
                 last_period_date = get_last_period_date()
                 # Prompt user the date of her planned travel
                 travel_date = get_travel_date()
                 # Display the relevant travel safety information
                 travel_safety(travel_date, last_period_date)
-            elif choice == '3':
+            elif user_choice == '3':
                 # Display the relevant activities safety information
                 check_activities_safety() # From activities_safety module
             else:
@@ -242,7 +242,7 @@ def safety_info() -> None:
 
                 # Inform the user that she entered an invalid choice
                 print(dedent(f'''
-                Error: "{choice}" is an invalid choice.\n
+                Error: "{user_choice}" is an invalid choice.\n
                 Please enter 1 for Food Safety, 2 for Travel Safety or 3 for Activities Safety
                 '''))
             instructions = True
@@ -314,22 +314,22 @@ def main() -> None:
             '''))
 
             # Prompt the user of her choice
-            choice = input('Enter your choice (1, 2 or 3): ')
+            user_choice = input('Enter your choice (1, 2 or 3): ')
 
             # Check if user want to view the instructions or exits the app
-            instructions = guide_user_response(choice)
+            instructions = guide_user_response(user_choice)
 
             while not instructions:
                 # Check what option the user selected
-                if choice == '1':
+                if user_choice == '1':
                     # Display pregnancy information based on user input
                     pregnancy_information()
                     display_guide_on_top() # From print_guide module
-                elif choice == '2':
+                elif user_choice == '2':
                     # Display safety information based on user input
                     safety_info()
                     display_guide_on_top() # From print_guide module
-                elif choice == '3':
+                elif user_choice == '3':
                     # Record user's personal notes
                     note_taking()
                     display_guide_on_top() # From print_guide module
@@ -338,7 +338,7 @@ def main() -> None:
                     display_guide_on_top() # From print_guide module
 
                     # Inform the user if she entered invalid choice
-                    print(f'"{choice}" is an invalid choice. Please enter 1, 2 or 3.')
+                    print(f'"{user_choice}" is an invalid choice. Please enter 1, 2 or 3.')
                 instructions = True
     except KeyboardInterrupt:
         print("\nError: Keyboard interrupt received.")
