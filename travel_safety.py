@@ -135,5 +135,5 @@ def check_travel_safety(travel_date: date, last_period_date: date) -> tuple[str,
         print('Error: The travel_safety_info.csv file not found ')
         return None, None, None, None, None
     except Exception as e:
-        print(f'An error occurred: {e}')
+        print(f'An unexpected error occurred: {e}')
         return None, None, None, None, None

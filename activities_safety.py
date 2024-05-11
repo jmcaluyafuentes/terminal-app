@@ -78,12 +78,6 @@ def check_activities_safety() -> None:
             except FileNotFoundError:
                 print('Error: File activities_safety.csv not found.')
                 break
-            except PermissionError as e:
-                print(f"Error: Permission denied - {e}")
-                break
-            except UnicodeDecodeError as e:
-                print(f"Error: Unable to decode file - {e}")
-                break
             except csv.Error as e:
                 print(f"Error: CSV processing error - {e}")
                 break
