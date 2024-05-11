@@ -6,6 +6,7 @@ import csv
 from textwrap import dedent
 from datetime import date
 from print_guide import display_guide_on_top, guide_user_response
+from pregnancy_calculator import calc_gestational_age
 
 def calc_gestational_age_on_travel(travel_date: date, last_period_date: date) -> int:
     """
@@ -19,14 +20,8 @@ def calc_gestational_age_on_travel(travel_date: date, last_period_date: date) ->
         int: The number of weeks pregnant on the planned travel date.
     """
 
-    # Get the current date
-    current_date = date.today()
-
-    # Calculate elapsed time from last period to current date in days
-    elapsed_time = (current_date - last_period_date).days
-
-    # Calculate gestational age in weeks and round down the result
-    gestational_age_in_weeks = elapsed_time // 7
+    # Calculate gestational age in weeks
+    gestational_age_in_weeks = calc_gestational_age(last_period_date) # From pregnancy_calculator module
 
     # Calculate the number of weeks from current date to the travel date
     weeks_until_travel = (travel_date - last_period_date).days // 7
