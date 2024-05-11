@@ -5,6 +5,7 @@ This module will give information about safe activities for pregnant women.
 import csv
 from textwrap import dedent
 from colorama import Fore, Style
+import emoji
 from print_guide import display_guide_on_top, guide_user_response
 from user_next_action import get_user_next_action
 
@@ -48,14 +49,16 @@ def check_activities_safety() -> None:
             display_guide_on_top() # From print_guide module
 
             # Display the error message for invalid user input
-            print(Fore.RED + dedent(f'''Error: "{user_choice}" is an invalid choice.'
-            Please enter 1 for Benefits, 2 for Exercises or 3 for Outdoor\n
-            ''') + Style.RESET_ALL)
+            print(Fore.RED + emoji.emojize(dedent(f'''
+            :cross_mark: ERROR: "{user_choice}" is an invalid choice.
+            Please enter 1 for Benefits, 2 for Exercises or 3 for Outdoor.
+            ''')) + Style.RESET_ALL)
+
             activity_loop = False
 
         while activity_loop:
             # Print the topic selected by the user
-            print(Fore.YELLOW + f'\n{topic}:' + Style.RESET_ALL)
+            print(Fore.MAGENTA + f'\n{topic}:' + Style.RESET_ALL)
 
             try:
                 # Open the file activities_safety.csv in read mode in context manager
@@ -80,13 +83,13 @@ def check_activities_safety() -> None:
                                 if activity_info:
                                     print(Fore.YELLOW + f'{index}. {activity_info}' + Style.RESET_ALL)
             except FileNotFoundError:
-                print(Fore.RED + 'Error: File activities_safety.csv not found.' + Style.RESET_ALL)
+                print(Fore.RED + emoji.emojize(':cross_mark: ERROR: File activities_safety.csv not found.') + Style.RESET_ALL)
                 break
             except csv.Error as e:
-                print(Fore.RED + f'Error: CSV processing error - {e}' + Style.RESET_ALL)
+                print(Fore.RED + emoji.emojize(f':cross_mark: ERROR: CSV processing error - {e}') + Style.RESET_ALL)
                 break
             except Exception as e:
-                print(Fore.RED + f'An unexpected error occurred: {e}' + Style.RESET_ALL)
+                print(Fore.RED + emoji.emojize(f':cross_mark: ERROR: An unexpected error occurred: {e}') + Style.RESET_ALL)
                 break
 
             activity_loop = False

@@ -13,6 +13,7 @@ import sys
 from textwrap import dedent
 from datetime import datetime, date
 from colorama import Fore, Style
+import emoji
 from print_guide import display_guide_on_top, guide_user_response
 from pregnancy_calculator import calc_pregnancy_info
 from food_safety import check_food_safety
@@ -50,10 +51,11 @@ def get_last_period_date() -> date:
                 display_guide_on_top() # From print_guide module
 
                 # Handles error gracefully if user entered invalid date format
-                print(Fore.RED + dedent(f'''
-                Error: "{user_input}" is an invalid format.
+                print(Fore.RED + emoji.emojize(dedent(f'''
+                :cross_mark: ERROR: "{user_input}" is an invalid format.
                 Please enter the date in DD/MM/YYYY.\n'''
-                ) + Style.RESET_ALL)
+                )) + Style.RESET_ALL)
+
                 instructions = True
 
 def get_travel_date() -> date:
@@ -78,10 +80,10 @@ def get_travel_date() -> date:
                 return travel_date
             except ValueError:
                 # Handles error gracefully if user entered invalid date format
-                print(Fore.RED + dedent(f'''
-                Error: "{user_input}" is an invalid format. 
+                print(Fore.RED + emoji.emojize(dedent(f'''
+                :cross_mark: ERROR: "{user_input}" is an invalid format. 
                 Please enter the date in DD/MM/YYYY.\n
-                ''') + Style.RESET_ALL)
+                ''')) + Style.RESET_ALL)
                 instructions = True
 
 # Main functions
@@ -101,12 +103,13 @@ def pregnancy_information() -> None:
         display_guide_on_top() # From print_guide module
 
         # Display relevant information about the pregnancy
-        print(Fore.YELLOW + dedent(f'''
+        print(Fore.YELLOW + emoji.emojize(dedent(f'''
             Pregnancy Information:\n
-            You are {gestational_age} weeks pregnant.\n
+            You are {gestational_age} weeks pregnant :baby: \n
             Trimester: {trimester}
             Estimated Due Date: {due_date.strftime('%d/%m/%Y')}
-            Due Date Countdown: {weeks_remaining} week(s) and {days_remaining} days.''') + Style.RESET_ALL)
+            Due Date Countdown: {weeks_remaining} week(s) and {days_remaining} days.
+            ''') + Style.RESET_ALL))
 
         # Prompt user what she wants to do next
         if not get_user_next_action(): # From user_next_action module
@@ -235,10 +238,10 @@ def safety_info() -> None:
                 display_guide_on_top() # From print_guide module
 
                 # Inform the user that she entered an invalid choice
-                print(Fore.RED + dedent(f'''
-                Error: "{user_choice}" is an invalid choice.
+                print(Fore.RED + emoji.emojize(dedent(f'''
+                :cross_mark: ERROR: "{user_choice}" is an invalid choice.
                 Please enter 1 for Food Safety, 2 for Travel Safety or 3 for Activities Safety
-                ''') + Style.RESET_ALL)
+                ''')) + Style.RESET_ALL)
             instructions = True
 
 def note_taking() -> None:
@@ -281,10 +284,10 @@ def note_taking() -> None:
                 # Display the guide for instructions and for quitting the app
                 display_guide_on_top() # From print_guide module
 
-                print(Fore.RED + dedent(f'''
-                    Error: "{user_choice}" is an invalid choice.
+                print(Fore.RED + emoji.emojize(dedent(f'''
+                    :cross_mark: ERROR: "{user_choice}" is an invalid choice.
                     Please enter 1 to write a note or 2 to read a note.
-                    ''') + Style.RESET_ALL)
+                    ''')) + Style.RESET_ALL)
             instructions = True
 
 # Execution entry point
@@ -330,12 +333,12 @@ def main() -> None:
                     display_guide_on_top() # From print_guide module
 
                     # Inform the user if she entered invalid choice
-                    print(Fore.RED + f'"{user_choice}" is an invalid choice. Please enter 1, 2 or 3.' + Style.RESET_ALL)
+                    print(Fore.RED + emoji.emojize(f':cross_mark: ERROR: "{user_choice}" is an invalid choice. Please enter 1, 2 or 3.') + Style.RESET_ALL)
                 instructions = True
     # Exit the app if there are keyboard interrupt done by the user such 'Ctrl + C'
     except KeyboardInterrupt:
-        print(Fore.RED + '\nError: Keyboard interrupt received.' + Style.RESET_ALL)
         print('\n' * 200)
+        print(Fore.RED + emoji.emojize('\n:cross_mark: ERROR: Keyboard interrupt received.\n') + Style.RESET_ALL)
         print(Fore.GREEN + 'Thank you for using the Pregnancy Tracker app. Goodbye!\n' + Style.RESET_ALL)
         sys.exit(1)
 

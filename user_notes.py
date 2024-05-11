@@ -5,6 +5,7 @@ This module will accept user input and record personal notes with date and time 
 import sys
 from datetime import datetime
 from colorama import Fore, Style
+import emoji
 from print_guide import display_guide_on_top, guide_user_response
 from user_next_action import get_user_next_action
 
@@ -39,11 +40,11 @@ def record_personal_notes() -> None:
                 record = get_user_next_action() # From user_next_action module
 
         except KeyboardInterrupt:
-            print(Fore.RED + '\nError: Keyboard interrupt received. Sorry, your last note was not saved.' + Style.RESET_ALL)
+            print(Fore.RED + emoji.emojize('\n:cross_mark: ERROR: Keyboard interrupt received. Sorry, your last note was not saved.') + Style.RESET_ALL)
             sys.exit(1)
         # Catch any other unexpected exceptions
         except Exception as e:
-            print(Fore.RED + f'An unexpected error occurred: {e}' + Style.RESET_ALL)
+            print(Fore.RED + emoji.emojize(f':cross_mark: ERROR: An unexpected error occurred: {e}') + Style.RESET_ALL)
 
         # Display the guide for instructions and for quitting the app
         display_guide_on_top() # From print_guide module
@@ -78,13 +79,13 @@ def display_personal_notes() -> None:
                 display = get_user_next_action() # From user_next_action module
 
         except FileNotFoundError:
-            print(Fore.RED + 'Error: File not found. Please try option 1 to write your first note.' + Style.RESET_ALL)
+            print(Fore.RED + emoji.emojize(':cross_mark: ERROR: File not found. Please try option 1 to write your first note.') + Style.RESET_ALL)
         except KeyboardInterrupt:
-            print(Fore.RED + '\nError: Keyboard interrupt received.' + Style.RESET_ALL)
+            print(Fore.RED + emoji.emojize('\n:cross_mark: ERROR: Keyboard interrupt received.') + Style.RESET_ALL)
             sys.exit(1)
         # Catch any other unexpected exceptions
         except Exception as e:
-            print(Fore.RED + f'An unexpected error occurred: {e}' + Style.RESET_ALL)
+            print(Fore.RED + emoji.emojize(f':cross_mark: ERROR: An unexpected error occurred: {e}') + Style.RESET_ALL)
 
         # Display the guide for instructions and for quitting the app
         display_guide_on_top() # From print_guide module

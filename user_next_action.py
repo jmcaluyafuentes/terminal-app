@@ -3,6 +3,7 @@ This module will ask the user if what she wants to do next.
 """
 
 from colorama import Fore, Style
+import emoji
 from print_guide import display_guide_on_top, guide_user_response
 
 def get_user_next_action() -> bool:
@@ -39,7 +40,7 @@ def get_user_next_action() -> bool:
                 display_guide_on_top() # From print_guide module
 
                 # Inform the user that she entered invalid choice
-                print(Fore.RED + f'"{user_choice}" is an invalid choice. Please enter 1 or 2.\n' + Style.RESET_ALL)
+                print(Fore.RED + emoji.emojize(f':cross_mark: ERROR: "{user_choice}" is an invalid choice. Please enter 1 or 2.\n') + Style.RESET_ALL)
             instructions = True
 
     return user_choice
