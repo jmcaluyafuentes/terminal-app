@@ -49,6 +49,8 @@ def guide_user_response(response: str) -> bool:
 
     # Check if user wants to exit the app
     if response.lower() == 'quit':
+        print('\n' * 200)
+        print(Fore.GREEN + 'Thank you for using the Pregnancy Tracker app. Goodbye!\n' + Style.RESET_ALL)
         sys.exit()
 
     return False

@@ -332,8 +332,11 @@ def main() -> None:
                     # Inform the user if she entered invalid choice
                     print(Fore.RED + f'"{user_choice}" is an invalid choice. Please enter 1, 2 or 3.' + Style.RESET_ALL)
                 instructions = True
+    # Exit the app if there are keyboard interrupt done by the user such 'Ctrl + C'
     except KeyboardInterrupt:
         print(Fore.RED + '\nError: Keyboard interrupt received.' + Style.RESET_ALL)
+        print('\n' * 200)
+        print(Fore.GREEN + 'Thank you for using the Pregnancy Tracker app. Goodbye!\n' + Style.RESET_ALL)
         sys.exit(1)
 
 # Execute main function when the script is run
