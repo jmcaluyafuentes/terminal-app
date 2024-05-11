@@ -134,9 +134,6 @@ def food_safety() -> None:
 
         # Display only if the food entered by the user has available safety information
         if food_safety_info:
-            # Display the guide for instructions and for quitting the app
-            display_guide_on_top() # From print_guide module
-
             print(f'\nFood: {user_input.capitalize()}\n')
             print(f'Food Safety Information: {food_safety_info}')
 
@@ -157,9 +154,6 @@ def food_safety() -> None:
 
         # Inform the user that the food she entered has no available safety information.
         else:
-            # Display the guide for instructions and for quitting the app
-            display_guide_on_top() # From print_guide module
-
             # Inform user that the food she entered has no available safety information
             print(f'Sorry, the safety information of "{user_input}" is not available.\n')
 
