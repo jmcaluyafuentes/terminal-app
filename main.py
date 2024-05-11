@@ -9,6 +9,7 @@ Student/Author: John Fuentes
 """
 
 # Import statements
+import sys
 from textwrap import dedent
 from datetime import datetime, date
 from print_guide import display_guide_on_top, guide_user_response
@@ -297,48 +298,51 @@ def main() -> None:
     """
     Main function that allows the user to select from the features of pregnancy tracker app.
     """
+    try:
+        print('\nWelcome to Pregnancy Tracker App!\n')
 
-    print('\nWelcome to Pregnancy Tracker App!\n')
+        # Display the guide for instructions and for quitting the app
+        display_guide_on_top() # From print_guide module
 
-    # Display the guide for instructions and for quitting the app
-    display_guide_on_top() # From print_guide module
+        while True:
+            # Give user options based on the features of this app
+            print(dedent('''
+            Select from the following features.\n
+            1. Pregnancy Information
+            2. Safety Information
+            3. Take Down Notes
+            '''))
 
-    while True:
-        # Give user options based on the features of this app
-        print(dedent('''
-        Select from the following features.\n
-        1. Pregnancy Information
-        2. Safety Information
-        3. Take Down Notes
-        '''))
+            # Prompt the user of her choice
+            choice = input('Enter your choice (1, 2 or 3): ')
 
-        # Prompt the user of her choice
-        choice = input('Enter your choice (1, 2 or 3): ')
+            # Check if user want to view the instructions or exits the app
+            instructions = guide_user_response(choice)
 
-        # Check if user want to view the instructions or exits the app
-        instructions = guide_user_response(choice)
+            while not instructions:
+                # Check what option the user selected
+                if choice == '1':
+                    # Display pregnancy information based on user input
+                    pregnancy_information()
+                    display_guide_on_top() # From print_guide module
+                elif choice == '2':
+                    # Display safety information based on user input
+                    safety_info()
+                    display_guide_on_top() # From print_guide module
+                elif choice == '3':
+                    # Record user's personal notes
+                    note_taking()
+                    display_guide_on_top() # From print_guide module
+                else:
+                    # Display the guide for instructions and for quitting the app
+                    display_guide_on_top() # From print_guide module
 
-        while not instructions:
-            # Check what option the user selected
-            if choice == '1':
-                # Display pregnancy information based on user input
-                pregnancy_information()
-                display_guide_on_top() # From print_guide module
-            elif choice == '2':
-                # Display safety information based on user input
-                safety_info()
-                display_guide_on_top() # From print_guide module
-            elif choice == '3':
-                # Record user's personal notes
-                note_taking()
-                display_guide_on_top() # From print_guide module
-            else:
-                # Display the guide for instructions and for quitting the app
-                display_guide_on_top() # From print_guide module
-
-                # Inform the user if she entered invalid choice
-                print(f'"{choice}" is an invalid choice. Please enter 1, 2 or 3.')
-            instructions = True
+                    # Inform the user if she entered invalid choice
+                    print(f'"{choice}" is an invalid choice. Please enter 1, 2 or 3.')
+                instructions = True
+    except KeyboardInterrupt:
+        print("\nError: Keyboard interrupt received.")
+        sys.exit(1)
 
 # Execute main function when the script is run
 if __name__ == "__main__":
