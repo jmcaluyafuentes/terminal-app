@@ -5,6 +5,7 @@ This module is used to check travel safety information in CSV file.
 import csv
 from textwrap import dedent
 from datetime import date
+from colorama import Fore, Style
 from print_guide import display_guide_on_top, guide_user_response
 from pregnancy_calculator import calc_gestational_age
 
@@ -48,20 +49,20 @@ def check_travel_safety(travel_date: date, last_period_date: date) -> tuple[str,
         weeks_pregnant_on_travel = calc_gestational_age_on_travel(travel_date, last_period_date)
 
         # Display to user the gestational age (in weeks) on the planned travel date
-        print(dedent(f'''
+        print(Fore.YELLOW + dedent(f'''
         \nGeneral Information:
         You will be {weeks_pregnant_on_travel} weeks pregnant during your planned travel on {travel_date.strftime("%d/%m/%Y")}.
-        '''))
+        ''') + Style.RESET_ALL)
 
         # Check if user is on 2nd semester on planned travel date.
         if 13 <= weeks_pregnant_on_travel <= 26:
-            print(dedent('''
+            print(Fore.YELLOW + dedent('''
                 Remarks:
                 You will be in 2nd trimester during your planned travel date.
                 2nd semester is the safest to travel, provided you are not experiencing any complications.\n
-            '''))
+            ''') + Style.RESET_ALL)
         else:
-            print('Please consult with your doctor, especially if your pregnancy is high risk.\n')
+            print(Fore.YELLOW + 'Please consult with your doctor, especially if your pregnancy is high risk.\n' + Style.RESET_ALL)
 
         questions_list = dedent('''The following are possible questions related to travel safety.\n
             Question 1: What are the general considerations when planning to travel?
@@ -77,7 +78,7 @@ def check_travel_safety(travel_date: date, last_period_date: date) -> tuple[str,
 
         while True:
             # Give the user the list of questions as a guide
-            print(questions_list)
+            print(Fore.YELLOW + questions_list + Style.RESET_ALL)
 
             # Prompt the user what question she would like an answer about the travel information
             user_choice = input('Please enter the number of your choice: ')
@@ -92,7 +93,7 @@ def check_travel_safety(travel_date: date, last_period_date: date) -> tuple[str,
                     # Display the guide for instructions and for quitting the app
                     display_guide_on_top() # From print_guide module
 
-                    print(f'Error: "{user_choice}" is invalid: Please enter from 1 to 9.\n')
+                    print(Fore.RED + f'Error: "{user_choice}" is invalid: Please enter from 1 to 9.\n' + Style.RESET_ALL)
                     continue
 
                 if 1 <= user_selected_int <= 9:
@@ -129,11 +130,11 @@ def check_travel_safety(travel_date: date, last_period_date: date) -> tuple[str,
                 # Display the guide for instructions and for quitting the app
                 display_guide_on_top() # From print_guide module
 
-                print(f'Error: "{user_choice}" is invalid. Please enter from 1 to 9.\n')
+                print(Fore.RED + f'Error: "{user_choice}" is invalid. Please enter from 1 to 9.\n' + Style.RESET_ALL)
 
     except FileNotFoundError:
-        print('Error: The travel_safety_info.csv file not found ')
+        print(Fore.RED + 'Error: The travel_safety_info.csv file not found.' + Style.RESET_ALL)
         return None, None, None, None, None
     except Exception as e:
-        print(f'An unexpected error occurred: {e}')
+        print(Fore.RED + f'An unexpected error occurred: {e}' + Style.RESET_ALL)
         return None, None, None, None, None

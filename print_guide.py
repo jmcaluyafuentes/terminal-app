@@ -6,6 +6,7 @@ or quit the application anywhere in the program.
 
 import sys
 from textwrap import dedent
+from colorama import Fore, Style
 
 def display_guide_on_top() -> None:
     """
@@ -13,12 +14,12 @@ def display_guide_on_top() -> None:
     """
     print('-' * 95) # print separator line of hyphens
 
-    print(dedent('''
+    print(Fore.CYAN + dedent('''
     Guide:
     - Type 'INSTRUCTIONS' to display the instructions.
     - Type 'QUIT' to exit the Pregnancy Tracker app.
     - Hit enter after selecting an option or typing a command.
-    '''))
+    ''') + Style.RESET_ALL)
 
 def guide_user_response(response: str) -> bool:
     """
@@ -93,4 +94,4 @@ def instructions() -> None:
         elif user_input.lower() == 'quit':
             sys.exit()
         else:
-            print(f'"{user_input}" is an invalid choice.')
+            print(Fore.RED + f'"{user_input}" is an invalid choice.' + Style.RESET_ALL)

@@ -4,6 +4,7 @@ This module will accept user input and record personal notes with date and time 
 
 import sys
 from datetime import datetime
+from colorama import Fore, Style
 from print_guide import display_guide_on_top, guide_user_response
 from user_next_action import get_user_next_action
 
@@ -32,17 +33,17 @@ def record_personal_notes() -> None:
                     # Write the note to the file with timestamp
                     f.write(f'{timestamp}: {user_note}\n')
 
-                print('Remarks: Note recorded successfully.')
+                print(Fore.YELLOW + 'Remarks: Note recorded successfully.' + Style.RESET_ALL)
 
                 # Ask user if what she wants to do next
                 record = get_user_next_action() # From user_next_action module
 
         except KeyboardInterrupt:
-            print("\nError: Keyboard interrupt received. Sorry, your last note was not saved.")
+            print(Fore.RED + '\nError: Keyboard interrupt received. Sorry, your last note was not saved.' + Style.RESET_ALL)
             sys.exit(1)
         # Catch any other unexpected exceptions
         except Exception as e:
-            print(f'An unexpected error occurred: {e}')
+            print(Fore.RED + f'An unexpected error occurred: {e}' + Style.RESET_ALL)
 
         # Display the guide for instructions and for quitting the app
         display_guide_on_top() # From print_guide module
@@ -63,27 +64,27 @@ def display_personal_notes() -> None:
                 lines = f.readlines()
                 # Check if there are recorded notes
                 if not lines:
-                    print('No notes found.')
+                    print(Fore.RED + 'No notes found.' + Style.RESET_ALL)
                 else:
-                    print('Recorded Notes:')
+                    print(Fore.YELLOW + 'Recorded Notes:' + Style.RESET_ALL)
                     for line in lines:
                         # Split each line into timestamp and note
                         parts = line.strip().split(': ', 1)
                         if len(parts) == 2:
                             timestamp, note = parts
-                            print(f'{timestamp}: {note}')
+                            print(Fore.YELLOW + f'{timestamp}: {note}' + Style.RESET_ALL)
 
                 # Ask user if what she wants to do next
                 display = get_user_next_action() # From user_next_action module
 
         except FileNotFoundError:
-            print('Error: File not found. Please try option 1 to write your first note.')
+            print(Fore.RED + 'Error: File not found. Please try option 1 to write your first note.' + Style.RESET_ALL)
         except KeyboardInterrupt:
-            print("\nError: Keyboard interrupt received.")
+            print(Fore.RED + '\nError: Keyboard interrupt received.' + Style.RESET_ALL)
             sys.exit(1)
         # Catch any other unexpected exceptions
         except Exception as e:
-            print(f'An unexpected error occurred: {e}')
+            print(Fore.RED + f'An unexpected error occurred: {e}' + Style.RESET_ALL)
 
         # Display the guide for instructions and for quitting the app
         display_guide_on_top() # From print_guide module

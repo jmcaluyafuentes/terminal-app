@@ -12,6 +12,7 @@ Student/Author: John Fuentes
 import sys
 from textwrap import dedent
 from datetime import datetime, date
+from colorama import Fore, Style
 from print_guide import display_guide_on_top, guide_user_response
 from pregnancy_calculator import calc_pregnancy_info
 from food_safety import check_food_safety
@@ -49,10 +50,10 @@ def get_last_period_date() -> date:
                 display_guide_on_top() # From print_guide module
 
                 # Handles error gracefully if user entered invalid date format
-                print(dedent(f'''
+                print(dedent(Fore.RED + f'''
                 Error: "{user_input}" is an invalid format.
                 Please enter the date in DD/MM/YYYY.\n'''
-                ))
+                ) + Style.RESET_ALL)
                 instructions = True
 
 def get_travel_date() -> date:
@@ -77,10 +78,10 @@ def get_travel_date() -> date:
                 return travel_date
             except ValueError:
                 # Handles error gracefully if user entered invalid date format
-                print(dedent(f'''
+                print(dedent(Fore.RED + f'''
                 Error: "{user_input}" is an invalid format. 
                 Please enter the date in DD/MM/YYYY.\n
-                '''))
+                ''') + Style.RESET_ALL)
                 instructions = True
 
 # Main functions
@@ -100,12 +101,12 @@ def pregnancy_information() -> None:
         display_guide_on_top() # From print_guide module
 
         # Display relevant information about the pregnancy
-        print(f'''
+        print(Fore.YELLOW + dedent(f'''
             Pregnancy Information:\n
             You are {gestational_age} weeks pregnant.\n
             Trimester: {trimester}
             Estimated Due Date: {due_date.strftime('%d/%m/%Y')}
-            Due Date Countdown: {weeks_remaining} week(s) and {days_remaining} days.''')
+            Due Date Countdown: {weeks_remaining} week(s) and {days_remaining} days.''') + Style.RESET_ALL)
 
         # Prompt user what she wants to do next
         if not get_user_next_action(): # From user_next_action module
@@ -137,21 +138,21 @@ def food_safety() -> None:
 
             # Display only if the food entered by the user has available safety information
             if food_safety_info:
-                print(f'\nFood: {user_input.capitalize()}\n')
-                print(f'Food Safety Information: {food_safety_info}')
+                print(Fore.YELLOW + f'\nFood: {user_input.capitalize()}\n' + Style.RESET_ALL)
+                print(Fore.YELLOW + f'Food Safety Information: {food_safety_info}' + Style.RESET_ALL)
 
                 # Display only if the value in food_precaution is not an empty string
                 if food_precaution:
-                    print(f'Precaution: {food_precaution}\n')
+                    print(Fore.YELLOW + f'Precaution: {food_precaution}\n' + Style.RESET_ALL)
 
                 # Display only if the value in food_handling is not an empty string
                 if food_handling:
-                    print(f'Food Handling: {food_handling}\n')
+                    print(Fore.YELLOW + f'Food Handling: {food_handling}\n' + Style.RESET_ALL)
 
             # Inform the user that the food she entered has no available safety information.
             else:
                 # Inform user that the food she entered has no available safety information
-                print(f'Sorry, the safety information of "{user_input}" is not available.\n')
+                print(Fore.RED + f'Sorry, the safety information of "{user_input}" is not available.\n' + Style.RESET_ALL)
 
             # Prompt the user what she wants to do next
             if not get_user_next_action(): # From user next action module
@@ -179,7 +180,7 @@ def travel_safety(travel_date: date, last_period_date: date) -> None:
         for index, travel_info in enumerate(travel_infos, 1):
             # Display only if travel info is not an empty string
             if travel_info:
-                print(f'{index}. {travel_info}')
+                print(Fore.YELLOW + f'{index}. {travel_info}' + Style.RESET_ALL)
 
         # Prompt the user what she wants to do next
         if not get_user_next_action(): # From user_next_action function
@@ -234,10 +235,10 @@ def safety_info() -> None:
                 display_guide_on_top() # From print_guide module
 
                 # Inform the user that she entered an invalid choice
-                print(dedent(f'''
+                print(Fore.RED + dedent(f'''
                 Error: "{user_choice}" is an invalid choice.\n
                 Please enter 1 for Food Safety, 2 for Travel Safety or 3 for Activities Safety
-                '''))
+                ''') + Style.RESET_ALL)
             instructions = True
 
 def note_taking() -> None:
@@ -280,10 +281,10 @@ def note_taking() -> None:
                 # Display the guide for instructions and for quitting the app
                 display_guide_on_top() # From print_guide module
 
-                print(dedent(f'''
+                print(dedent(Fore.RED + f'''
                     Error: "{user_choice}" is an invalid choice.
                     Please enter 1 to write a note or 2 to read a note.
-                    '''))
+                    ''') + Style.RESET_ALL)
             instructions = True
 
 # Execution entry point
@@ -292,7 +293,8 @@ def main() -> None:
     Main function that allows the user to select from the features of pregnancy tracker app.
     """
     try:
-        print('\nWelcome to Pregnancy Tracker App!\n')
+        print('-' * 95) # print separator line of hyphens
+        print(Fore.GREEN + Style.BRIGHT + '\nWelcome to Pregnancy Tracker App!\n' + Style.RESET_ALL)
 
         # Display the guide for instructions and for quitting the app
         display_guide_on_top() # From print_guide module
@@ -331,10 +333,10 @@ def main() -> None:
                     display_guide_on_top() # From print_guide module
 
                     # Inform the user if she entered invalid choice
-                    print(f'"{user_choice}" is an invalid choice. Please enter 1, 2 or 3.')
+                    print(Fore.RED + f'"{user_choice}" is an invalid choice. Please enter 1, 2 or 3.' + Style.RESET_ALL)
                 instructions = True
     except KeyboardInterrupt:
-        print("\nError: Keyboard interrupt received.")
+        print(Fore.RED + '\nError: Keyboard interrupt received.' + Style.RESET_ALL)
         sys.exit(1)
 
 # Execute main function when the script is run

@@ -3,6 +3,7 @@ This module will give information about safe activities for pregnant women.
 """
 
 import csv
+from colorama import Fore, Style
 from print_guide import display_guide_on_top, guide_user_response
 from user_next_action import get_user_next_action
 
@@ -46,13 +47,13 @@ def check_activities_safety() -> None:
             display_guide_on_top() # From print_guide module
 
             # Display the error message for invalid user input
-            print(f'Error: "{user_choice}" is an invalid choice.')
+            print(Fore.RED + f'Error: "{user_choice}" is an invalid choice.' + Style.RESET_ALL)
             print('Please enter 1 for Benefits, 2 for Exercises or 3 for Outdoor\n')
             activity_loop = False
 
         while activity_loop:
             # Print the topic selected by the user
-            print(f'\n{topic}:')
+            print(Fore.YELLOW + f'\n{topic}:' + Style.RESET_ALL)
 
             try:
                 # Open the file activities_safety.csv in read mode in context manager
@@ -75,15 +76,15 @@ def check_activities_safety() -> None:
                             for index, activity_info in enumerate(infos, 1):
                                 # Display only if travel info is not an empty string
                                 if activity_info:
-                                    print(f'{index}. {activity_info}')
+                                    print(Fore.YELLOW + f'{index}. {activity_info}' + Style.RESET_ALL)
             except FileNotFoundError:
-                print('Error: File activities_safety.csv not found.')
+                print(Fore.RED + 'Error: File activities_safety.csv not found.' + Style.RESET_ALL)
                 break
             except csv.Error as e:
-                print(f"Error: CSV processing error - {e}")
+                print(Fore.RED + f'Error: CSV processing error - {e}' + Style.RESET_ALL)
                 break
             except Exception as e:
-                print(f"An unexpected error occurred: {e}")
+                print(Fore.RED + f'An unexpected error occurred: {e}' + Style.RESET_ALL)
                 break
 
             activity_loop = False
