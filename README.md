@@ -94,11 +94,7 @@ Install Windows 10 into your laptop or desktop. Check the latest version here ht
 
 Install Windows Terminal from Microsoft Store here https://apps.microsoft.com/detail/9n0dx20hk701?rtc=1&hl=en-au&gl=AU.
 
-#### Step 3. Install Visual Studio Code (VS Code)
-
-Install the VS Code from here https://code.visualstudio.com/download.
-
-#### Step 4. Install Ubuntu 22.04 WSL
+#### Step 3. Install Ubuntu 22.04 WSL
 
 "Windows Subsystem For Linux (WSL) is a technology built into Windows that allows running a Linux operating system within it's own environment or container, side-by-side with Windows. This gives us the best of both worlds. (source: Coder Academy)"
 
@@ -130,7 +126,7 @@ Guide is available here https://learn.microsoft.com/en-us/windows/python/web-fra
 
 #### Step 1. Open your Ubuntu terminal
 
-Search 'Ubuntu' and click to open.
+Search 'Ubuntu' and click to open the terminal.
 
 #### Step 2. You must have a Python3 version
 
@@ -168,19 +164,245 @@ Search 'Ubuntu' and click to open.
 
 ## How to Install the Application
 
+#### Step 1. Open the directory in your laptop or desktop
 
+1. Open your Ubuntu terminal
+
+2. Check your current directory
+
+    ```
+    pwd
+    ```
+
+3. Navigate to the directory where you want to install the Pregnancy Tracker app.
+
+    ```
+    cd ./path-to-your-folder
+    ```
+
+    Replace the 'path-to-your-folder' with the actual path of your directory.
+
+#### Step 2. Clone my repository
+
+1. Copy and paste below command into your terminal
+
+    ```
+    git clone git@github.com:jmcaluyafuentes/terminal-app-T1A3.git
+    ```
+
+#### Step 3. Run the Pregnancy Tracker app
+
+1. Navigate to the project directory
+
+    ```
+    cd terminal-app-T1A3
+    ```
+
+2. Run the application by typing this command
+
+    ```
+    ./run_app.sh
+    ```
+
+    * This command will automatically install a virtual environment into your selected directory so that all packages in this app will not be installed to the global environment.
+
+    * The command also automatically installs all dependencies (i.e., third-party packages) necessary to run the app as intended.
+
+    * Lastly, the command will run the application.
+
+#### Step 4. How to exit the app
+
+1. To exit the app at anytime, type "QUIT" (case-insensitive) and press enter.  
+
+2. Alternatively, you can use the 'CTRL + C' in your keyboard.
 
 ## Features of the Application
 
 ### 1. Pregnancy Information
 
+Input: Date of last menstrual period entered by the user
+
+Outputs:
+
+a. Number of Weeks Pregnant: Calculates and displays the number of weeks pregnant based on the input date.
+
+b. Trimester Information: Indicates whether the user is in her 1st, 2nd, or 3rd trimester of pregnancy.
+
+c. Estimated Due Date: Provides an estimated due date based on the input date.
+
+d. Countdown: Displays a countdown (in weeks and days) from current date to the estimated due date.
+
+#### Run the app by entering the command "./run_app.sh" in the terminal. 
+
+Please take note that every time you enter a command, hit enter so that the app can execute the command.
+
+![Preview of the Pregnancy Tracker app](./markdown-images/app-screenshot-1.png)
+
+Select 1 for Pregnancy Information:
+
+![app snapshot](./markdown-images/feature1-1.png)
+
+Enter the date of last menstrual period:
+
+![app snapshot](./markdown-images/feature1-2.png)
+
+Then the app will display the pregnancy information:
+
+![app snapshot](./markdown-images/feature1-3.png)
+
+Select 2 to go back to main menu.
+
 ### 2. Safety Information
 
-Changed the title from "Precautions" (based from the development plan) to "Safety Information" as latter is more appropriate for this context.
+In the early stage of development, this feature was previously named 'Precaution'.
 
-### 3. Note-taking
+However, I realized that the appropriate title is "Safety Information" because it encompasses a broader scope of ensuring the well-being and health safety of the pregnant user.
 
-## Testing
+From the main menu, select 2 for Safety Information:
+
+![app snapshot](./markdown-images/feature2-1.png)
+
+### Sub-features:
+
+#### 2.1 Food Safety Information
+
+Input: Specific food item (e.g., Grapes) entered by the user
+
+Output:
+
+Determines whether the food is "Safe to Eat", "Not Safe to Eat" or other information relevant to food safety.
+
+Select 1 for Food Safety:
+
+![app snapshot](./markdown-images/feature2-2.png)
+
+Enter the food:
+
+![app snapshot](./markdown-images/feature2-3.png)
+
+The app will display the food safety information:
+
+![app snapshot](./markdown-images/feature2-4.png)
+
+Select 2 to go back to Safety Information menu.
+
+#### 2.2 Travel Safety Information
+
+Input: Planned travel date and last menstrual period date entered by the user.
+
+Outputs:
+
+a. Estimated Weeks Pregnant on Travel Date: Calculates and displays the estimated number of weeks pregnant on the planned travel date.
+
+b. Safety Advice: Provides tailored advice related to the planned travel, such as:
+Whether it's safe to travel internationally.
+Recommendations such as obtaining a medical certificate or precautions at airport security.
+Activity Safety
+This feature ensures that the user is aware of safe and appropriate activities during pregnancy.
+
+Select 2 for the Travel Safety:
+
+![app snapshot](./markdown-images/feature2-6.png)
+
+Enter the last date of menstrual period:
+
+![app snapshot](./markdown-images/feature2-7.png)
+
+Enter the planned travel date:
+
+![app snapshot](./markdown-images/feature2-8.png)
+
+Select from the given questions related to travel safety:
+
+![app snapshot](./markdown-images/feature2-9.png)
+
+The app will display the travel safety information related to the question you selected:
+
+![app snapshot](./markdown-images/feature2-10.png)
+
+Select 2 to go back to Safety Information menu.
+
+#### 3. Note-taking
+
+Input: User-generated personal notes (e.g., milestone events, feelings).
+
+Outputs:
+
+a. Recording Notes: Notes are saved to a file, including the current date and time of entry.
+
+b. Confirmation Message: The app confirms successful addition of the note to the file.
+
+c. Viewing Recorded Notes: Users can view all past notes, providing a log of their pregnancy journey.
+
+Select 3 for the note-taking:
+
+![app snapshot](./markdown-images/feature3-1.png)
+
+Select 1 to write your personal notes:
+
+![app snapshot](./markdown-images/feature3-2.png)
+
+Now, write your notes:
+
+![app snapshot](./markdown-images/feature3-3.png)
+
+The app will confirm the note was successfully recorded:
+
+![app snapshot](./markdown-images/feature3-4.png)
+
+Select 2 to go back to one menu up.
+
+Then, select 2 to read your recorded note:
+
+![app snapshot](./markdown-images/feature3-5.png)
+
+The app will display your recorded notes.
+
+![app snapshot](./markdown-images/feature3-6.png)
+
+#### Guide to display the detailed instructions or exit the app
+
+1. You can enter "INSTRUCTIONS" (case-insensitive) at any time in order to display the instructions.
+
+![app snapshot](./markdown-images/instructions-1.png)
+
+The app will then display the instructions.
+
+![app snapshot](./markdown-images/instructions-2.png)
+
+2. You can enter "QUIT" (case-insensitive) at any time to exit the app.
+
+## Error Handling
+
+### Invalid selection entered
+
+If invalid selection number is entered, the app will display an error.
+
+![app snapshot](./markdown-images/error-handling-1.png)
+
+### Invalid date or format
+
+If invalid date or format is entered, the app will display an error.
+
+![app snapshot](./markdown-images/error-handling-2.png)
+
+### Last menstrual period date is greater than the current date (this is invalid)
+
+If the last menstrual period date is greater than the current date, the app will display an error.
+
+![app snapshot](./markdown-images/error-handling-3.png)
+
+### Travel date is less than the current date (this is invalid)
+
+If travel date is less than the current date, the app will display an error.
+
+![app snapshot](./markdown-images/error-handling-4.png)
+
+### Safety information of food entered is not available
+
+If safety information of food entered is not available, the app will display an error.
+
+![app snapshot](./markdown-images/error-handling-5.png)
 
 ## References
 

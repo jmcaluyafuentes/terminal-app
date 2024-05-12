@@ -53,8 +53,8 @@ def get_last_period_date() -> date:
                     # Display the guide for instructions and for quitting the app
                     display_guide_on_top() # From print_guide module
                     # Display error message for invalid input date
-                    print(Fore.RED + emoji.emojize(dedent('''
-                    :cross_mark: ERROR: The last menstrual period date must be before the current date.
+                    print(Fore.RED + emoji.emojize(dedent(f'''
+                    :cross_mark: ERROR: The last menstrual period date {last_period_date} must be before the current date.
                     ''')) + Style.RESET_ALL)
                     instructions = True
             except ValueError:
@@ -93,8 +93,8 @@ def get_travel_date() -> date:
                     # Display the guide for instructions and for quitting the app
                     display_guide_on_top() # From print_guide module
                     # Display error message for invalid input date
-                    print(Fore.RED + emoji.emojize(dedent('''
-                    :cross_mark: ERROR: The travel date must be after the current date.
+                    print(Fore.RED + emoji.emojize(dedent(f'''
+                    :cross_mark: ERROR: The travel date {travel_date} must be after the current date.
                     ''')) + Style.RESET_ALL)
                     instructions = True
             except ValueError:
