@@ -67,7 +67,7 @@ def display_personal_notes() -> None:
                 if not lines:
                     print(Fore.RED + 'No notes found.' + Style.RESET_ALL)
                 else:
-                    print(Fore.YELLOW + 'Recorded Notes:' + Style.RESET_ALL)
+                    print(Fore.YELLOW + 'YOUR RECORDED NOTES:' + Style.RESET_ALL)
                     for line in lines:
                         # Split each line into timestamp and note
                         parts = line.strip().split(': ', 1)
@@ -80,6 +80,7 @@ def display_personal_notes() -> None:
 
         except FileNotFoundError:
             print(Fore.RED + emoji.emojize(':cross_mark: ERROR: File not found. Please try option 1 to write your first note.') + Style.RESET_ALL)
+            return None
         except KeyboardInterrupt:
             print(Fore.RED + emoji.emojize('\n:cross_mark: ERROR: Keyboard interrupt received.') + Style.RESET_ALL)
             sys.exit(1)
