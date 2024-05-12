@@ -42,7 +42,7 @@ def check_travel_safety(travel_date: date, last_period_date: date) -> tuple[str,
         last_period_date (date): Last day of menstrual period
 
     Returns:
-        tuple[str, str, str, str, str]: Several safety information about travel.
+        tuple[str, str, str, str, str]: Several safety information about travel (e.i., info1, info2, info3, info4, info5)
     """
 
     try:
