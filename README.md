@@ -362,7 +362,7 @@ The app will display your recorded notes.
 
 #### Guide to display the detailed instructions or exit the app
 
-1. You can enter "INSTRUCTIONS" (case-insensitive) at any time in order to display the instructions.
+1. You can enter "INSTRUCTIONS" (case-insensitive) at any time in order to display the instructions. Enter "CLOSE" (case-insensitive) to close the instruction page.
 
 ![app snapshot](./markdown-images/instructions-1.png)
 
@@ -403,6 +403,239 @@ If travel date is less than the current date, the app will display an error.
 If safety information of food entered is not available, the app will display an error.
 
 ![app snapshot](./markdown-images/error-handling-5.png)
+
+### Unit Testing
+
+The date entered by the user is tested if valid using the pytest package.
+
+![app snapshot](./markdown-images/unit-test.png)
+
+## Logic of functions
+
+### Main function
+
+```py
+while True:
+            # Give user options based on the features of this app
+            print(dedent('''
+            Select from the following features.\n
+            1. Pregnancy Information
+            2. Safety Information
+            3. Take Down Notes
+            '''))
+
+            # Prompt the user of her choice
+            user_choice = input('Enter your choice (1, 2 or 3): ')
+
+            # Check if user want to view the instructions or exits the app
+            instructions = guide_user_response(user_choice)
+
+            while not instructions:
+                # Check what option the user selected
+                if user_choice == '1':
+                    # Display pregnancy information based on user input
+                    pregnancy_information()
+                    display_guide_on_top() # From print_guide module
+                elif user_choice == '2':
+                    # Display safety information based on user input
+                    safety_info()
+                    display_guide_on_top() # From print_guide module
+                elif user_choice == '3':
+                    # Record user's personal notes
+                    note_taking()
+                    display_guide_on_top() # From print_guide module
+                else:
+                    # Display the guide for instructions and for quitting the app
+                    display_guide_on_top() # From print_guide module
+
+                    # Inform the user if she entered invalid choice
+                    print(Fore.RED + emoji.emojize(f':cross_mark: ERROR: "{user_choice}" is an invalid choice. Please enter 1, 2 or 3.') + Style.RESET_ALL)
+                instructions = True
+    # Exit the app if there are keyboard interrupt done by the user such 'Ctrl + C'
+    except KeyboardInterrupt:
+        print('\n' * 200)
+        print(Fore.RED + emoji.emojize('\n:cross_mark: ERROR: Keyboard interrupt received.\n') + Style.RESET_ALL)
+        print(Fore.GREEN + 'Thank you for using the Pregnancy Tracker app. Goodbye!\n' + Style.RESET_ALL)
+        sys.exit(1)
+```
+
+### Explanation:
+
+#### Outer while True Loop:
+
+This loop runs indefinitely until explicitly terminated by a keyboard interrupt (Ctrl + C).
+
+#### User Interface:
+
+The program displays a menu of features for the user to choose from.  
+It prompts the user to enter their choice (1, 2, or 3) via the input function.
+
+#### Processing User Input:
+
+The program calls the guide_user_response function to check if the user wants to view instructions or exit the app.
+
+#### Inner while not instructions Loop:
+
+This loop executes as long as the instructions flag is False, indicating normal feature selection.
+
+#### Feature Handling:
+
+Depending on the user's choice (1, 2, or 3), the program executes different functions:
+
+If user_choice is '1', it displays pregnancy information after calling the pregnancy_information() function.
+
+If user_choice is '2', it displays safety information after calling the safety_info() function.
+
+If user_choice is '3', it allows the user to take personal notes by calling the note_taking() function.
+
+#### Error Handling:
+
+If the user enters an invalid choice (i.e., not '1', '2', or '3'), it displays an error message.
+
+The program then exits the inner loop by setting instructions to True.
+
+#### Keyboard Interrupt Handling:
+
+The program handles a KeyboardInterrupt exception (Ctrl + C) by displaying an error message and exiting gracefully.
+
+#### pregnancy_information function
+
+```py
+def pregnancy_information() -> None:
+    """
+    Calculate and display the information about pregnancy such as gestational age 
+    in weeks, trimester, estimated due date (EDD) and countdown until EDD.
+    """
+    while True:
+        # Prompt the user to enter the date of her last menstrual period
+        last_period_date = get_last_period_date()
+
+        # Calculate gestational age in weeks
+        gestational_age, trimester, due_date, weeks_remaining, days_remaining = calc_pregnancy_info(last_period_date)
+
+        # Display the guide for instructions and for quitting the app
+        display_guide_on_top() # From print_guide module
+
+        # Display relevant information about the pregnancy
+        print(Fore.YELLOW + emoji.emojize(dedent(f'''
+            Pregnancy Information:\n
+            You are {gestational_age} weeks pregnant :baby: \n
+            Trimester: {trimester}
+            Estimated Due Date: {due_date.strftime('%d/%m/%Y')}
+            Due Date Countdown: {weeks_remaining} week(s) and {days_remaining} days.
+            ''') + Style.RESET_ALL))
+
+        # Prompt user what she wants to do next
+        if not get_user_next_action(): # From user_next_action module
+
+            # Display the guide for instructions and for quitting the app
+            display_guide_on_top() # From print_guide module
+            break # Return to main menu based on user choice
+```
+
+### Explanation:
+
+#### User Input for Last Menstrual Period:
+
+The function starts by calling get_last_period_date() to prompt the user to enter the date of her last menstrual period and obtain the last_period_date as a datetime.date object.
+
+#### Calculating Pregnancy Information:
+
+It then calls calc_pregnancy_info function to compute essential pregnancy information based on the last_period_date. This function calculates:
+
+* gestational_age: The number of weeks since the last menstrual period.
+* trimester: Determines whether the pregnancy is in the first, second, or third trimester based on gestational_age.
+* due_date: Estimated due date (EDD) based on the last_period_date.
+* weeks_remaining and days_remaining: Countdown until the estimated due date (due_date).
+
+#### Displaying Pregnancy Information:
+
+The function then displays the calculated pregnancy information using formatted text and emojis, including:
+
+* gestational_age in weeks.
+* trimester.
+* due_date in DD/MM/YYYY format.
+* Countdown (weeks_remaining and days_remaining) until the estimated due date.
+
+#### Handling User Interaction:
+
+After displaying the pregnancy information, it prompts the user for the next action using get_user_next_action().
+
+If the user chooses to return to the main menu (by not taking any further action), the function breaks out of the loop and returns control to the main menu.
+
+### get_last_period_date function
+
+```py
+def get_last_period_date() -> date:
+    """
+    Prompt user to enter the last menstrual period date and parse the input for validation.
+
+    Returns:
+        date: The parsed date object representing the last menstrual period date.
+
+    """
+    # Display the guide for instructions and for quitting the app
+    display_guide_on_top() # From print_guide module
+
+    while True:
+        # Prompt user to enter the date of her last menstrual period
+        user_input = input('\nEnter the date of your last menstrual period (DD/MM/YYYY): ')
+        # Check if user want to view the instructions or exits the app
+        instructions = guide_user_response(user_input)
+
+        while not instructions:
+            try:
+                # Convert user input string into datetime.date object in DD/MM/YYYY format
+                last_period_date = datetime.strptime(user_input, '%d/%m/%Y').date()
+                # Get current date
+                current_date = date.today()
+                # Check if last_period_date is before the current date
+                if last_period_date < current_date:
+                    return last_period_date
+                else:
+                    # Display the guide for instructions and for quitting the app
+                    display_guide_on_top() # From print_guide module
+                    # Display error message for invalid input date
+                    print(Fore.RED + emoji.emojize(dedent(f'''
+                    :cross_mark: ERROR: The last menstrual period date {last_period_date} must be before the current date.
+                    ''')) + Style.RESET_ALL)
+                    instructions = True
+            except ValueError:
+                # Display the guide for instructions and for quitting the app
+                display_guide_on_top() # From print_guide module
+                # Handles error gracefully if user entered invalid date format
+                print(Fore.RED + emoji.emojize(dedent(f'''
+                :cross_mark: ERROR: "{user_input}" is an invalid format.
+                Please enter the date in DD/MM/YYYY.'''
+                )) + Style.RESET_ALL)
+                instructions = True
+```
+
+### Explanation:
+
+#### User Input Prompt:
+
+The function starts by displaying a guide for the user and prompts them to enter the date of their last menstrual period (DD/MM/YYYY format) using the input() function.
+
+#### Input Validation Loop:
+
+The function enters a loop (while True) to continuously prompt the user for input until a valid date is provided.
+
+#### Date Parsing and Validation:
+
+Inside the loop, it attempts to convert the user's input string into a datetime.date object using datetime.strptime().
+
+If the conversion succeeds (try block), it checks if the parsed last_period_date is before the current date (date.today()). If valid, it returns the parsed date.
+
+If the input format is invalid or cannot be parsed (except ValueError block), it displays an error message and continues to prompt the user for a valid input.
+
+#### Handling User Instructions:
+
+The instructions flag controls whether to continue prompting the user (while not instructions) or allow the user to exit or view instructions based on their input.
+
+#### Error Handling and Messaging:
+
+If there's an error parsing the date or the date is invalid, appropriate error messages are displayed using colored text.
 
 ## References
 
