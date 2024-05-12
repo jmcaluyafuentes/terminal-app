@@ -198,7 +198,13 @@ Search 'Ubuntu' and click to open the terminal.
     cd terminal-app-T1A3
     ```
 
-2. Run the application by typing this command
+2. Change the permission of the script file run_app.sh
+
+    ```
+    chmod +x run_app.sh 
+    ```
+
+3. Run the application by typing this command
 
     ```
     ./run_app.sh
