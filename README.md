@@ -410,6 +410,12 @@ If safety information of food entered is not available, the app will display an 
 
 ![app snapshot](./markdown-images/error-handling-5.png)
 
+### No file found
+
+If there is no file found if the user selected to read her notes, the app will display an error. This happens if the user did not write any notes yet while trying to read the file.
+
+![app snapshot](./markdown-images/no-file-found.png)
+
 ### Unit Testing
 
 The date entered by the user is tested if valid using the pytest package.
