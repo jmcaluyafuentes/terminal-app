@@ -2,7 +2,7 @@
 
 ## Term 1, Assignment 3
 
-Web Development Accelerated
+Diploma of IT - Web Development  
 Coder Academy
 
 ## Purpose
